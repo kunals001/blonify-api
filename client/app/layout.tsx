@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from 'react-hot-toast'
+import Navbar from "@/components/Navbar";
+import AuthProvider from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Blonify",
@@ -13,10 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className=""
-      >
+      <body className="font-prime">
+        <AuthProvider>
+          <Navbar />
         {children}
+        <Toaster position="top-right" />
+        </AuthProvider>
       </body>
     </html>
   );
