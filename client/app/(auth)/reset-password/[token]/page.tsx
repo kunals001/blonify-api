@@ -1,42 +1,47 @@
 "use client"
-import AUTHLAYOUT from "@/components/AuthLayout"
-import {motion} from 'framer-motion'
+import AUTHLAYOUT from '@/components/AuthLayout';
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Input from '@/components/Input'
-import { Lock, Mail,Loader } from 'lucide-react'
-import Link from "next/link"
-import { useRouter } from 'next/navigation'
+import {  Lock,Loader } from 'lucide-react';
+import {toast} from 'react-hot-toast'
 import { useAuthStore } from '@/store/authStore'
-import { toast } from 'react-hot-toast'
-import GoogleSignin from '@/firebase/GoogleSignin'
+import { useRouter} from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 
 const page = () => {
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {signin,isLoading,error,isAuthenticated,checkAuth} = useAuthStore()
+    const [confirmpassword, setConfirmPassword] = useState("");
+    const {resetPassword,error,isLoading,isAuthenticated} = useAuthStore()
     const router = useRouter();
+    const params = useParams();
+    const token = params.token as string;
 
-
+   
   useEffect(() => {
     if (isAuthenticated) {
       router.replace("/");
     }
   }, [isAuthenticated]);
 
-    const handleSignup = async (e:any) => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault()
 
-		try {
-			await signin({ email, password});
-			toast.success("Signin successful");
-			router.push("/")
-			await checkAuth();
-		} catch (error) {
-			console.log(error);
-            toast.error("Signup failed");
+        if (password !== confirmpassword) {
+			alert("Passwords do not match");
+			return;
 		}
+        
+        try {
+            await resetPassword({token,password});
+            toast.success("Password reset successfully");
+            router.push("/signin")
+        } catch (error) {
+            console.log(error);
+            toast.error("Reset password failed");
+        }
     }
   return (
     <AUTHLAYOUT>
@@ -47,15 +52,8 @@ const page = () => {
                     <h2 className='text-[3vh] md:text-[2vw] lg:text-[2vw] select-none mx-auto font-semibold text-center bg-gradient-to-r from-prime to-emerald-500 text-transparent bg-clip-text'>Welcome Back</h2>
 
 
-                <form onSubmit={handleSignup} className='flex flex-col w-full relative mt-[1vh]'>
+                <form onSubmit={handleSubmit} className='flex flex-col w-full relative mt-[1vh]'>
                 
-				<Input
-				icon={Mail}
-				type='email'
-				placeholder='Email Address'
-				value={email}
-				onChange={(e:any) => setEmail(e.target.value)}
-					/>
 				<Input
 				icon={Lock}
 				type='password'
@@ -64,7 +62,14 @@ const page = () => {
 				onChange={(e:any) => setPassword(e.target.value)}
 					/>
 
-				<Link href={'/forgot-password'}><p className="text-sm text-gray-400 mt-2">Forgot password?</p></Link>
+                <Input
+				icon={Lock}
+				type='password'
+				placeholder='Confirm Password'
+				value={confirmpassword}
+				onChange={(e:any) => setConfirmPassword(e.target.value)}
+					/>
+
 
                 {error && <p className='text-red-500 font-semibold mt-2'>{error}</p>}
 
@@ -75,21 +80,10 @@ const page = () => {
 					type='submit'
 					disabled={isLoading}
                 >
-					{isLoading ? <Loader className='animate-spin w-6 h-6 mx-auto' /> : "Sign In"}
+					{isLoading ? <Loader className='animate-spin w-6 h-6 mx-auto' /> : "Reset Password"}
 				</motion.button>
-
-                <GoogleSignin/>
                 </form>
                 </div>
-
-                <div className='px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center w-full'>
-				<p className='text-sm text-gray-400'>
-                    Don't have an account{" "}
-					<Link href={"/signup"} className='text-green-400 hover:underline'>
-						Sign up
-					</Link>
-				</p>
-			</div>
 
         </motion.div>
     </AUTHLAYOUT>

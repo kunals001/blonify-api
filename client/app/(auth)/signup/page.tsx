@@ -17,15 +17,15 @@ const page = () => {
     const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const {signup,error,isLoading,user,isAuthenticated,checkAuth} = useAuthStore()
+	const {signup,error,isLoading,isAuthenticated} = useAuthStore()
     const router = useRouter();
 
-	useEffect(() => {
-		checkAuth()
-		if (isAuthenticated) {
-			router.replace('/')
-		}
-	}, [isAuthenticated, user])
+	
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/");
+    }
+  }, [isAuthenticated]);
 
     const handleSignup = async (e:any) => {
         e.preventDefault()

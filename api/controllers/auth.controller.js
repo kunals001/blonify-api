@@ -261,8 +261,8 @@ export const checkAuth = async (req, res) => {
 		if (!user) {
 			return res.status(400).json({ success: false, message: "User not found" });
 		}
-
-		res.status(200).json({ success: true, user });
+        const { password:any, ...userData } = user.toObject();
+		res.status(200).json({ success: true, user: userData });
 	} catch (error) {
 		console.log("Error in checkAuth ", error);
 		res.status(400).json({ success: false, message: error.message });

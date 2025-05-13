@@ -1,17 +1,23 @@
-"use client"
+'use client'
 
-import { useEffect } from "react"
-import { useAuthStore } from "@/store/authStore"
+import { useAuthStore } from "@/store/authStore";
+import { useEffect } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  
-  const checkAuth = useAuthStore(state => state.checkAuth)
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const { checkAuth, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
-    checkAuth()
-  }, [checkAuth])
+    checkAuth();
+  }, [checkAuth]);
 
-  return <>{children}</>
-}
+  if (isCheckingAuth) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <LoadingSpinner/>
+      </div>
+    );
+  }
 
-export default AuthProvider
+  return <>{children}</>;
+};

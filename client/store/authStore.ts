@@ -7,6 +7,7 @@ const API_URL_2 = process.env.NEXT_PUBLIC_API_KEY_2;
 axios.defaults.withCredentials = true;
 
 type User = {
+    profilePic: string | Blob | undefined;
     name: string;
     email: string;
     password: string;
@@ -24,10 +25,10 @@ type AuthState = {
     googleSignup: (data:{name:string,email:string,profilePicture:string}) => Promise<any>;
     signin: (data: { email: string; password: string }) => Promise<void>;
     googleSignin: (data:{email:string}) => Promise<any>;
-    // forgotPassword: (data:{email:string}) => Promise<any>;
-    // resetPassword: (data:{token:string,password:string}) => Promise<any>;
-    checkAuth: () => Promise<void>;
+    forgotPassword: (data:{email:string}) => Promise<any>;
+    resetPassword: (data:{token:string,password:string}) => Promise<any>;
     logout: () => void;
+    checkAuth: () => Promise<void>;
     
   };
 
@@ -39,7 +40,7 @@ export const useAuthStore = create<AuthState>((set) =>({
   isCheckingAuth: true,
 
   signup: async ({ name, email, password }) => {
-    set({ isLoading: true, error: null });
+    set({ isLoading: true, error: null, isAuthenticated: false });
 
     try {
       const response = await axios.post(`${API_URL}/signup`, {
@@ -62,7 +63,7 @@ export const useAuthStore = create<AuthState>((set) =>({
       }
   },
   verifyEmail: async({code})=>{
-    set({isLoading:true,error:null})
+    set({isLoading:true,error:null,isAuthenticated:false})
     try {
         const response = await axios.post(`${API_URL}/verify-email`,{
             code
@@ -77,7 +78,7 @@ export const useAuthStore = create<AuthState>((set) =>({
     }
   },
   googleSignup: async ({name,email,profilePicture }) => {
-    set({ isLoading: true, error: null });
+    set({ isLoading: true, error: null ,isAuthenticated: false});
     try {
       const response = await axios.post(`${API_URL}/google-signup`, {
         name,
@@ -97,21 +98,23 @@ export const useAuthStore = create<AuthState>((set) =>({
     }
   },
   signin: async ({ email, password }) => {
-    set({ isLoading: true, error: null });
+    set({ isLoading: true, error: null, isAuthenticated: false });
     try {
       const response = await axios.post(`${API_URL}/signin`, {
         email,
         password,
       });
+      
       set({
         user: response.data.user,
         isAuthenticated: true,
         isLoading: false,
       });
+      
     } catch (error: any) {
       const msg =
         error?.response?.data?.message || "Signup failed"; 
-      set({ error: msg, isLoading: false });
+      set({ error: msg, isLoading: false, isCheckingAuth: false });
       throw new Error(msg); 
     }
 
@@ -139,21 +142,47 @@ export const useAuthStore = create<AuthState>((set) =>({
       });
     } catch (error: any) {
       const msg =
-        error?.response?.data?.message || "Signup failed"; // ✅ pull error from API
-    
+        error?.response?.data?.message || "Signup failed"; 
       set({ error: msg, isLoading: false });
       throw new Error(msg); // throw so that frontend can catch
     }
     },
-    checkAuth: async()=>{
-      set({isCheckingAuth:true,error:null})
-      try {
-          const response = await axios.get(`${API_URL}/check-auth`)
-          set({user:response.data.user, isAuthenticated:true, isCheckingAuth:false})
-      } catch (error:any) {
-          set({isCheckingAuth:false})
-          throw error
-      }
-    },
-    
+	forgotPassword: async ({email}) => {
+		set({ isLoading: true, error: null });
+		try {
+			const response = await axios.post(`${API_URL}/forgot-password`, { email });
+			set({ user: response.data.user, isLoading: false });
+		} catch (error:any) {
+			 const msg =
+        error?.response?.data?.message || "Signup failed"; 
+      set({ error: msg, isLoading: false });
+      throw new Error(msg); // throw so that frontend can catch
+		}
+	},
+  resetPassword: async ({token, password}) => {
+		set({ isLoading: true, error: null, isAuthenticated: false });
+		try {
+			const response = await axios.post(`${API_URL}/reset-password/${token}`, { password });
+			set({ user: response.data.user, isLoading: false });
+		} catch (error:any) {
+			const msg =
+        error?.response?.data?.message || "Signup failed"; 
+      set({ error: msg, isLoading: false });
+      throw new Error(msg); // throw so that frontend can catch
+		}
+	},
+  checkAuth: async () => {
+    set({ isCheckingAuth: true ,error: null, isAuthenticated: false});
+    try {
+      const response = await axios.get(`${API_URL}/check-auth`);
+      set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
+    } catch (error:any) {
+      const msg =
+        error?.response?.data?.message || "Signup failed"; 
+      set({ error: msg, isLoading: false, isCheckingAuth: false });
+    }
+  }
+  
 })) 
+
+

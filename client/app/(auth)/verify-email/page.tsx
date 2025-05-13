@@ -7,11 +7,19 @@ import Input from '@/components/Input';
 import {  Mail } from 'lucide-react';
 import {toast} from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 const page = () => {
     const [code ,setCode] = useState("")
-    const {verifyEmail,isLoading,error} = useAuthStore()
+    const {verifyEmail,isLoading,error,isAuthenticated,checkAuth} = useAuthStore()
     const router = useRouter();
+
+   
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/");
+    }
+  }, [isAuthenticated]);
 
     const handleSubmit = async (e:any) => {
         e.preventDefault()
@@ -20,6 +28,7 @@ const page = () => {
             await verifyEmail({code});
             toast.success("Verify successful");
             router.push("/")
+            await checkAuth();
         } catch (error) {
            console.log(error);
            toast.error("Verify failed");

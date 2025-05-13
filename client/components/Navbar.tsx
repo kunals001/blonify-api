@@ -113,7 +113,7 @@ const Navbar = () => {
 
         {!user?(
              <div className=" flex md:gap-[.6vw] lg:gap-[.5vw]">
-        <Link href={'/signin'}><button className='group  relative text-zinc-800 px-[1vh] py-[.4vh] rounded-full bg-gradient-to-l from-green-300 via-lime-300 to-prime border-1 border-prime hover:cursor-pointer text-[1.7vh] md:text-[1vw] lg:text-[1.2vw] md:px-[1vw] md:py-[.1vw] lg:px-[1vw] lg:py-[.1vw] text-center transform active:scale-95 transition-all duration-200'>Login</button></Link>
+        <Link href={'/signin'}><button className='group  relative text-zinc-800 px-[1vh] py-[.4vh] rounded-full bg-gradient-to-l from-green-300 via-lime-300 to-prime border-1 border-prime hover:cursor-pointer text-[1.7vh] md:text-[1vw] lg:text-[1.2vw] md:px-[1vw] md:py-[.1vw] lg:px-[1vw] lg:py-[.1vw] text-center transform active:scale-95 transition-all duration-200'>Signin</button></Link>
 
         <Link href={'/signup'}><button className='group hidden md:block lg:block relative text-zinc-800 px-[1vh] py-[.4vh] rounded-full bg-gradient-to-l from-green-300 via-lime-300 to-prime border-1 border-prime hover:cursor-pointer text-[1.7vh] md:text-[1vw] lg:text-[1.2vw] md:px-[1vw] md:py-[.1vw] lg:px-[1vw] lg:py-[.1vw] text-center transform active:scale-95 transition-ease duration-200'>Signup</button></Link>
         </div>
@@ -123,14 +123,14 @@ const Navbar = () => {
             <div className="flex md:hidden lg:hidden">
                 <Link href={'/profile'}>
                     <div className='group  relative border-1 border-prime h-[4.5vh] w-[4.5vh] rounded-full flex items-center justify-center '>
-                        <img src={user.profilePicture} alt="profile" className="w-full h-full rounded-full object-cover" />
+                        <img src={user.profilePic} alt="profile" className="w-full h-full rounded-full object-cover" />
                     </div>
                 </Link>
             </div>
 
 
             <div className={` group relative hidden md:w-[3.2vw] md:h-[3.2vw] lg:w-[3.3vw] lg:h-[3.3vw] rounded-full border-2 border-prime md:flex lg:flex items-center justify-center cursor-pointer`}>
-                <Link href={'/profile'}><img src={user.profilePicture} alt="profile" className="w-full h-full rounded-full object-cover" /></Link>
+                <Link href={'/profile'}><img src={user.profilePic} alt="profile" className="w-full h-full rounded-full object-cover" /></Link>
 
                 <div className="hidden md:flex lg:flex absolute bg-zinc-500 rounded-md right-0 top-[3.5vw] md:px-[1vw] md:py-[.5vw] lg:px-[1vw] lg:py-[.6vw] transform scale-0 group-hover:scale-100 transition-all duration-300 flex-col gap-[.5vh] md:w-[10vw] lg:w-[11vw]">
                    <Link href={'/profile'}> <h3 className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full'>{user.name}</h3></Link>
