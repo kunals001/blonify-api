@@ -23,8 +23,16 @@ const Navbar = () => {
         }
     }
 
+    const MobileMenu = [
+    { label: "Home", href: "/" },
+    { label: "Daily", href: "/daily" },
+    { label: "Tools", href: "/tools" },
+    { label: "About", href: "/about" },
+    { label: "Contact Us", href: "/contact-us" },
+    ]
+
   return (
-    <nav className='z-20 w-full flex items-center h-[5.5vh] md:h-[4vw] lg:h-[4vw] px-[1vh] md:px-[10vw] lg:px-[15vw] justify-between  gap-[1vw] backdrop-filter backdrop-blur-xl'>
+    <nav className='z-20 w-full flex items-center h-[5.5vh] md:h-[4vw] lg:h-[4vw] px-[1vh] md:px-[13vw] lg:px-[15vw] justify-between  gap-[1vw] backdrop-filter backdrop-blur-xl select-none'>
 
         
         {/*  Mobile Menu */}
@@ -35,15 +43,13 @@ const Navbar = () => {
                 <X className='absolute top-[1vh] right-[1vh] w-[3.5vh] h-[3.5vh] text-zinc-700 p-[1vw] rounded-md bg-green-100' onClick={() => setIsOpen(false)}/>
 
                 <ul className='flex flex-col gap-[.5vh] items-center justify-center px-[3vh] pt-[10vh] w-[16vh]'>
-                    <Link onClick={() => setIsOpen(false)} href="/"><li className='w-[15vh] px-[3vw] py-[.5vh] rounded-md bg-green-100 font-medium text-zinc-700 '>Home</li></Link>
-
-                    <Link onClick={() => setIsOpen(false)} href="/daily"><li className='w-[15vh] px-[3vw] py-[.5vh] rounded-md bg-green-100 font-medium text-zinc-700'>Daily</li></Link>
-
-                    <Link onClick={() => setIsOpen(false)} href="/tools"><li className='w-[15vh] px-[3vw] py-[.5vh] rounded-md bg-green-100 font-medium text-zinc-700'>Tools</li></Link>
-
-                    <Link onClick={() => setIsOpen(false)} href="/about"><li className='w-[15vh] px-[3vw] py-[.5vh] rounded-md bg-green-100 font-medium text-zinc-700'>About</li></Link>
-
-                    <Link onClick={() => setIsOpen(false)} href="/about"><li className='w-[15vh] px-[3vw] py-[.5vh] rounded-md bg-green-100 font-medium text-zinc-700'>Contact Us</li></Link>
+                    {MobileMenu.map((item)=>(
+                        <Link href={item.href} key={item.href}>
+                            <li onClick={() => setIsOpen(false)} className='w-[15vh] px-[3vw] py-[.5vh] rounded-md bg-green-100 font-medium text-zinc-700 '>
+                                {item.label}
+                            </li>
+                        </Link>
+                    ))}
                 </ul>
             </div>
         </div>
@@ -132,7 +138,7 @@ const Navbar = () => {
             <div className={` group relative hidden md:w-[3.2vw] md:h-[3.2vw] lg:w-[3.3vw] lg:h-[3.3vw] rounded-full border-2 border-prime md:flex lg:flex items-center justify-center cursor-pointer`}>
                 <Link href={'/profile'}><img src={user.profilePic} alt="profile" className="w-full h-full rounded-full object-cover" /></Link>
 
-                <div className="hidden md:flex lg:flex absolute bg-zinc-500 rounded-md right-0 top-[3.5vw] md:px-[1vw] md:py-[.5vw] lg:px-[1vw] lg:py-[.6vw] transform scale-0 group-hover:scale-100 transition-all duration-300 flex-col gap-[.5vh] md:w-[10vw] lg:w-[11vw]">
+                <div className="hidden z-40 md:flex lg:flex absolute bg-zinc-800 rounded-md -right-[11vw] top-[2.5vw] md:px-[1vw] md:py-[.5vw] lg:px-[1vw] lg:py-[.6vw] transform scale-0 group-hover:scale-100 transition-all duration-300 flex-col gap-[.5vh] md:w-[10vw] lg:w-[11vw]">
                    <Link href={'/profile'}> <h3 className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full'>{user.name}</h3></Link>
 
                     <h3 onClick={handlelogout} className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-red-400 cursor-pointer transition-all duration-300'>logout</h3>
