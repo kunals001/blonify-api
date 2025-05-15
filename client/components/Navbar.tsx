@@ -32,7 +32,7 @@ const Navbar = () => {
     ]
 
   return (
-    <nav className='z-20 w-full flex items-center h-[5.5vh] md:h-[4vw] lg:h-[4vw] px-[1vh] md:px-[13vw] lg:px-[15vw] justify-between  gap-[1vw] backdrop-filter backdrop-blur-xl select-none'>
+    <nav className='z-20 w-full flex items-center h-[5.5vh] md:h-[4vw] lg:h-[4vw] px-[1vh] md:px-[13vw] lg:px-[15vw] justify-between  gap-[1vw] backdrop-filter backdrop-blur-xl select-none sticky top-0'>
 
         
         {/*  Mobile Menu */}
@@ -140,6 +140,10 @@ const Navbar = () => {
 
                 <div className="hidden z-40 md:flex lg:flex absolute bg-zinc-800 rounded-md -right-[11vw] top-[2.5vw] md:px-[1vw] md:py-[.5vw] lg:px-[1vw] lg:py-[.6vw] transform scale-0 group-hover:scale-100 transition-all duration-300 flex-col gap-[.5vh] md:w-[10vw] lg:w-[11vw]">
                    <Link href={'/profile'}> <h3 className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full'>{user.name}</h3></Link>
+
+                   {user.isAdmin ?(
+                    <Link href={'/admin-dashboard?tab=posts'}><div className="'text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full text-zinc-200">Admin</div></Link>
+                   ):("")}
 
                     <h3 onClick={handlelogout} className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-red-400 cursor-pointer transition-all duration-300'>logout</h3>
                 </div>

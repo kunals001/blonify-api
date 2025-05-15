@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const MobileCategories = () => {
 
-     const [selected, setSelected] = useState("/");
+  const [selected, setSelected] = useState("/");
 
   const menuItems = [
     { label: "Daily", href: "/daily" },
