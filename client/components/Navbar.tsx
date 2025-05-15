@@ -129,14 +129,14 @@ const Navbar = () => {
             <div className="flex md:hidden lg:hidden">
                 <Link href={'/profile'}>
                     <div className='group  relative border-1 border-prime h-[4.5vh] w-[4.5vh] rounded-full flex items-center justify-center '>
-                        <img src={user.profilePic} alt="profile" className="w-full h-full rounded-full object-cover" />
+                        <img src={user?.profilePic} alt="profile" className="w-full h-full rounded-full object-cover" />
                     </div>
                 </Link>
             </div>
 
 
             <div className={` group relative hidden md:w-[3.2vw] md:h-[3.2vw] lg:w-[3.3vw] lg:h-[3.3vw] rounded-full border-2 border-prime md:flex lg:flex items-center justify-center cursor-pointer`}>
-                <Link href={'/profile'}><img src={user.profilePic} alt="profile" className="w-full h-full rounded-full object-cover" /></Link>
+                <Link href={'/profile'}><img src={user?.profilePic} alt="profile" className="w-full h-full rounded-full object-cover" /></Link>
 
                 <div className="hidden z-40 md:flex lg:flex absolute bg-zinc-800 rounded-md -right-[11vw] top-[2.5vw] md:px-[1vw] md:py-[.5vw] lg:px-[1vw] lg:py-[.6vw] transform scale-0 group-hover:scale-100 transition-all duration-300 flex-col gap-[.5vh] md:w-[10vw] lg:w-[11vw]">
                    <Link href={'/profile'}> <h3 className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full'>{user.name}</h3></Link>

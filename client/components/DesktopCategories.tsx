@@ -17,7 +17,7 @@ const DesktopCategories = () => {
   const [selected, setSelected] = useState("/");
 
   return (
-    <div className="category-search hidden md:flex lg:flex w-full border-2 border-prime md:px-[.4vw] md:py-[.2vw] lg:px-[.4vw] lg:py-[.2vw] rounded-full items-center gap-[.6vw] relative select-none">
+    <div className="category-search hidden md:flex lg:flex w-full border-1 border-prime md:px-[.2vw] md:py-[.2vw] lg:px-[.2vw] lg:py-[.2vw] rounded-full items-center gap-[.6vw] relative select-none">
         <div className="category">
           <ul className="flex gap-[.4vw]">
             {menuItems.map((item) => (

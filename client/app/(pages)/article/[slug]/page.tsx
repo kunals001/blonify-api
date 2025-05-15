@@ -5,6 +5,7 @@ import {Search,} from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import Comments from '@/components/Comments';
+import ShareLinks from '@/components/ShareLinks';
 
 const page = () => {
   const [selected, setSelected] = useState("/");
@@ -19,6 +20,10 @@ const page = () => {
 
   return (
     <div className='w-full min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] pt-[2vh] md:pt-[2vw] lg:p-[2.1vw] flex flex-col gap-[1vh] md:gap[.8vw] lg:gap-[.9vw]'>
+
+      {/* Mobile Share */}
+      <ShareLinks className="md:hidden lg:hidden flex md:flex-col flex-row gap-[1vh] md:gap-[.5vw] items-center md:items-start"/>
+
       <div className="flex flex-col justify-between md:flex-row lg:flex-row">
         <div className="flex flex-col gap-[.5vh] md:gap-[.3vw] lg:gap-[.3vw] py-[2vh] md:py-[1.1vw] lg:py-[1.2vw] px-[.2vh] md:px-[.5vw] lg:px-[.5vw]">
             <h1 className='text-[2.3vh] md:text-[1.7vw] lg:text-[1.7vw] font-semibold text-zinc-700 leading-none'>My first post My first postMy first post My first post</h1>
@@ -31,7 +36,7 @@ const page = () => {
 
         <ImageKit src={'https://ik.imagekit.io/8jagcyqun/default-image.jpg?updatedAt=1747192787254'}
         alt="About"
-        className="w-full h-[24vh] md:w-[27vw] md:h-[18vw] lg:w-[30vw] lg:h-[20vw] rounded-xl object-cover"
+        className="w-full h-[24vh] md:w-[27vw] md:h-[15vw] lg:w-[30vw] lg:h-[16vw] rounded-xl object-cover"
         w={750}
         h={750}
         />
@@ -62,72 +67,11 @@ const page = () => {
         {/* Author */}
 
 
-        <div className="md:w-1/3 hidden md:block lg:block lg:w-1/3 w-full px-[1vh] py-[1vh] md:px-[.6vw] lg:px-[.6vw] sticky top-[5%] h-full">
-          <p className='text-[1.4vh] md:text-[1vw] lg:text-[1vw] font-second  text-zinc-700 font-semibold'>Author</p>
+        <div className="md:w-1/3 hidden md:block lg:block lg:w-1/3 w-full px-[1vh] py-[1vh] md:px-[.6vw] lg:px-[.6vw] sticky top-[7%] h-full">
 
-          <div className="pt-[.5vh] md:pt-[.4vw] lg:pt-[.5vw] flex items-center gap-[1vh] md:gap-[.5vw] lg:gap-[.5vw]">
-            <ImageKit src={'https://ik.imagekit.io/8jagcyqun/default-image.jpg?updatedAt=1747192787254'}
-            alt="Author"
-            className="w-[5vh] h-[5vh] md:w-[3.5vw] md:h-[3.5vw] lg:w-[3.5vw] lg:h-[3.5vw] rounded-full object-cover"
-            w={50}
-            h={50}
-            />
+          {/* share */}
 
-            <span className='text-[1vh] md:text-[1vw] lg:text-[1vw] font-second font-medium pl-[.5vh] md:pl-[.5vw] lg:pl-[.5vw] text-prime'>Kunal Singh</span>
-
-            {/* mobile share */}
-
-            <div className="share text-[1vh] md:hidden lg:hidden flex gap-[.4vh]">
-               <ImageKit src={'https://ik.imagekit.io/8jagcyqun/icons8-whatsapp.svg?updatedAt=1747225348817'}
-            alt="share on whatsapp"
-            className='w-[2.7vh] h-[2.7vh] cursor-pointer rounded-md '
-            w={100}
-            h={100}
-            />
-
-            <ImageKit src={'https://ik.imagekit.io/8jagcyqun/icons8-facebook.svg?updatedAt=1747225348707'}
-            alt="share on whatsapp"
-            className='w-[2.5vh] h-[2.5vh] cursor-pointer rounded-md '
-            w={50}
-            h={50}
-            />
-
-            <ImageKit src={'https://ik.imagekit.io/8jagcyqun/icons8-instagram-logo.svg?updatedAt=1747225348664'}
-            alt="share on whatsapp"
-            className='w-[2.5vh] h-[2.5vh] cursor-pointer rounded-md '
-            w={50}
-            h={50}
-            />
-            </div>
-
-          </div>
-
-          <p className='text-[1.1vh] md:text-[.8vw] lg:text-[.8vw] font-second font-medium text-zinc-700 pt-[1vh] md:pt-[.5vw] lg:pt-[.5vw] leading-none'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, neque </p>
-
-          {/* desktop share */}
-
-          <div className="share hidden md:flex lg:flex md:pt-[.5vw] lg:pt-[.5vw]">
-            <ImageKit src={'https://ik.imagekit.io/8jagcyqun/icons8-whatsapp.svg?updatedAt=1747225348817'}
-            alt="share on whatsapp"
-            className='md:w-[2.5vw] md:h-[2.5vw] lg:w-[2.5vw] lg:h-[2.5vw] cursor-pointer rounded-md '
-            w={50}
-            h={50}
-            />
-
-            <ImageKit src={'https://ik.imagekit.io/8jagcyqun/icons8-facebook.svg?updatedAt=1747225348707'}
-            alt="share on whatsapp"
-            className='md:w-[2.2vw] md:h-[2.2vw] lg:w-[2.2vw] lg:h-[2.2vw] cursor-pointer rounded-md '
-            w={50}
-            h={50}
-            />
-
-            <ImageKit src={'https://ik.imagekit.io/8jagcyqun/icons8-instagram-logo.svg?updatedAt=1747225348664'}
-            alt="share on whatsapp"
-            className='md:w-[2.2vw] md:h-[2.2vw] lg:w-[2.2vw] lg:h-[2.2vw] cursor-pointer rounded-md '
-            w={50}
-            h={50}
-            />
-          </div>
+          <ShareLinks className='hidden md:flex md:flex-col flex-row gap-[1vh] md:gap-[.5vw] items-center md:items-start'/>
 
          {/* Categories */}
 

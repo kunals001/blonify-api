@@ -9,8 +9,8 @@ const DashSidebar = () => {
       const menuItems = [
         { label: "Dashposts", href: "/admin-dashboard?tab=posts" },
         { label: "Create Post", href: "/create-post" },
-        { label: "Laptops", href: "admin-dashboard?tab=posts" },
-        { label: "Watches", href: "admin-dashboard?tab=posts" },
+        { label: "Laptops", href: "/" },
+        { label: "Watches", href: "/about" },
       ];
 
   return (

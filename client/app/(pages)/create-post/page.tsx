@@ -1,7 +1,7 @@
 "use client"
 import ProtectedAdminRoute from '@/components/AdminProtect'
 import SunEditorComponent from '@/components/Draft'
-import { LetterText } from 'lucide-react'
+import { LetterText, SquarePen } from 'lucide-react'
 import React, { useRef } from 'react'
 
 const page = () => {
@@ -28,6 +28,12 @@ const page = () => {
                           <option value='Watches'>Watches</option>
                         </select>
                     </div>
+                </div>
+
+                 <div className="relative w-full flex items-center justify-center">
+                    <textarea  placeholder="Description" className='w-full px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative resize-none' />
+
+                    <SquarePen className='absolute text-prime left-0 top-0 pl-[.5vh] md:pl-[.5vw] lg:pl-[.5vw] cursor-pointer size-6 md:size-10 lg:size-9 pt-[.6vw] block'/>
                 </div>
 
                 <div className="w-full flex items-center justify-between  px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative">

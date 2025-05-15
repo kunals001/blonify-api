@@ -11,7 +11,7 @@ const SunEditorComponent = () => {
     <div>
       <h2>Editor</h2>
       <SunEditor
-        setDefaultStyle="font-size: 1vw; line-height: 1.5; height: 20vh; border: 1px solid #ccc; padding: 10px; overflow-y: scroll;"
+        setDefaultStyle="font-size: 1vw; line-height: 1.5; height: 16vw; border: 1px solid #ccc; padding: 10px; overflow-y: scroll;"
         setContents={content}
         onChange={setContent}
         setOptions={{
