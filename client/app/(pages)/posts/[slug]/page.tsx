@@ -1,9 +1,10 @@
 "use client"
 import React from 'react'
 import ImageKit from '@/components/Image';
-import {Search, SendHorizontal } from 'lucide-react';
+import {Search,} from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import Comments from '@/components/Comments';
 
 const page = () => {
   const [selected, setSelected] = useState("/");
@@ -54,20 +55,14 @@ const page = () => {
 
            {/* Comments */}
 
-        <div className="flex relative flex-col px-[.5vh] md:px-[.5vw] lg:px-[.5vw] py-[1vh] md:py-[.5vw] lg:py-[.5vw]">
-          <p className='text-[1.7vh] md:text-[1.5vw] lg:text-[1.5vw] font-second font-semibold bg-gradient-to-r from-prime to-emerald-500 text-transparent bg-clip-text'>Comments</p>
-
-          <textarea  placeholder='Write a comment' className='relative w-full text-[1.3vh] md:text-[1.1vw] lg:text-[1.2vw] font-second font-medium text-zinc-700 py-[.5vh] md:py-[.3vw] lg:py-[.3vw] bg-zinc-100 rounded-xl h-[6vh] md:h-[3.8vw] lg:h-[4.2vw] border-1 border-prime outline-none px-[1vh] md:px-[1vw] lg:px-[1vw] resize-none'/>
-
-          <SendHorizontal size={20} className='absolute text-[1vh] md:text-[1vw] lg:text-[1vw] bottom-[1.4vh] right-[1vh] md:bottom-[1vw] md:right-[1vw] lg:bottom-[1.5vw] lg:right-[1.5vw] text-prime'/>
-        </div>
+        <Comments/>
 
         </div>
 
         {/* Author */}
 
 
-        <div className="md:w-1/3 hidden md:block lg:block lg:w-1/3 w-full px-[1vh] py-[1vh] md:px-[.6vw] lg:px-[.6vw]">
+        <div className="md:w-1/3 hidden md:block lg:block lg:w-1/3 w-full px-[1vh] py-[1vh] md:px-[.6vw] lg:px-[.6vw] sticky top-[5%] h-full">
           <p className='text-[1.4vh] md:text-[1vw] lg:text-[1vw] font-second  text-zinc-700 font-semibold'>Author</p>
 
           <div className="pt-[.5vh] md:pt-[.4vw] lg:pt-[.5vw] flex items-center gap-[1vh] md:gap-[.5vw] lg:gap-[.5vw]">

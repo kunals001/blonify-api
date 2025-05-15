@@ -1,5 +1,6 @@
 import {create} from "zustand";
 import axios from "axios";
+import { profile } from 'console';
 
 const API_URL = process.env.NEXT_PUBLIC_API_KEY;
 const API_URL_2 = process.env.NEXT_PUBLIC_API_KEY_2;
@@ -11,7 +12,8 @@ type User = {
     name: string;
     email: string;
     password: string;
-    profilePicture: string;
+    profilePicture: string | Blob | "https://ik.imagekit.io/8jagcyqun/user.png?updatedAt=1747286931410";
+    isAdmin: boolean
 };
 
 type AuthState = {
@@ -29,6 +31,8 @@ type AuthState = {
     resetPassword: (data:{token:string,password:string}) => Promise<any>;
     logout: () => void;
     checkAuth: () => Promise<void>;
+    updateProfile: (data:{name:string,password:string}) => Promise<any>;
+    profilePicUpload: (data:{profilePic:string | Blob }) => Promise<any>;
     
   };
 
@@ -181,7 +185,49 @@ export const useAuthStore = create<AuthState>((set) =>({
         error?.response?.data?.message || "Signup failed"; 
       set({ error: msg, isLoading: false, isCheckingAuth: false });
     }
+  },
+  updateProfile: async ({name,password}) => {
+  set({ isLoading: true, error: null });
+  try {
+    const response = await axios.put(`${API_URL_2}/update-profile`, 
+      {
+        name,
+        password
+      }
+    );
+    set({
+      user: response.data.user,
+      isAuthenticated: true,
+      isLoading: false,
+    });
+  } catch (error: any) {
+    const msg =
+        error?.response?.data?.message || "Signup failed"; 
+      set({ error: msg, isLoading: false, isCheckingAuth: false });
   }
+  },
+
+  profilePicUpload:async({profilePic}) => {
+    set({ isLoading: true, error: null });
+  try {
+    const response = await axios.put(`${API_URL_2}/update-profile-pic`, {
+      profilePic,
+    });
+
+    set({
+      user: response.data.data,
+      isAuthenticated: true,
+      isLoading: false,
+    });
+
+    return response.data.message;
+  } catch (error: any) {
+    const msg =
+        error?.response?.data?.message || "Signup failed"; 
+      set({ error: msg, isLoading: false, isCheckingAuth: false });
+  }
+  }
+
   
 })) 
 

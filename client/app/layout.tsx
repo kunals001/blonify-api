@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-prime">
+      <body className="font-prime" cz-shortcut-listen="true">
         <AuthProvider>
           <Navbar />
         {children}

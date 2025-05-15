@@ -35,7 +35,6 @@ const page = () => {
 			router.push("/verify-email")
 		} catch (error) {
 			console.log(error);
-            toast.error("Signup failed");
 		}
     }
 

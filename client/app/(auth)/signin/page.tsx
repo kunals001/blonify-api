@@ -35,7 +35,6 @@ const page = () => {
 			await checkAuth();
 		} catch (error) {
 			console.log(error);
-            toast.error("Signup failed");
 		}
     }
   return (
