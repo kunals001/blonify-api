@@ -23,7 +23,7 @@ const Navbar = () => {
         }
     }
 
-    const MobileMenu = [
+    const BarMenu = [
     { label: "Home", href: "/" },
     { label: "Daily", href: "/daily" },
     { label: "Tools", href: "/tools" },
@@ -43,7 +43,7 @@ const Navbar = () => {
                 <X className='absolute top-[1vh] right-[1vh] w-[3.5vh] h-[3.5vh] text-zinc-700 p-[1vw] rounded-md bg-green-100' onClick={() => setIsOpen(false)}/>
 
                 <ul className='flex flex-col gap-[.5vh] items-center justify-center px-[3vh] pt-[10vh] w-[16vh]'>
-                    {MobileMenu.map((item)=>(
+                    {BarMenu.map((item)=>(
                         <Link href={item.href} key={item.href}>
                             <li onClick={() => setIsOpen(false)} className='w-[15vh] px-[3vw] py-[.5vh] rounded-md bg-green-100 font-medium text-zinc-700 '>
                                 {item.label}
@@ -83,37 +83,17 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="desktop-menu hidden md:block lg:block mt-[.7vw] items-center  justify-center ">
             <ul className='flex rounded-full md:px-[.2vw] md:py-[.1vw] lg:px-[.2vw] lg:py-[.1vw]  items-center justify-center '>
-               <Link href={"/"}> 
-                    <li className='md:text-[1vw] lg:text-[1.1vw] px-[.7vw] py-[.2vw] rounded-full font-medium text-zinc-700 group hover:bg-green-200 transition-all duration-300 overflow-hidden leading-[1.3vw]'>Home
-                        <div className="group-hover:translate-x-0 group-hover:opacity-100 w-full h-[2px] bg-zinc-700 transition-all duration-300 -translate-x-full opacity-0"></div>
-                    </li>
-                </Link>
+                
+                {BarMenu.map((item)=>(
+                    <Link href={item.href} key={item.href}>
+                        <li className='md:text-[1vw] lg:text-[1.1vw] px-[.7vw] py-[.2vw] rounded-full font-medium text-zinc-700 group hover:bg-green-200 transition-all duration-300 overflow-hidden leading-[1.3vw]'>
+                                {item.label}
 
-                <Link href={"/"}> 
-                    <li className='md:text-[1vw] lg:text-[1.1vw] px-[.7vw] py-[.2vw] rounded-full font-medium text-zinc-700 group hover:bg-green-200 transition-all duration-300 overflow-hidden leading-[1.3vw]'>Daily
-                        <div className="group-hover:translate-x-0 group-hover:opacity-100 w-full h-[2px] bg-zinc-700 transition-all duration-300 -translate-x-full opacity-0"></div>
-                    </li>
-                </Link>
+                             <div className="group-hover:translate-x-0 group-hover:opacity-100 w-full h-[2px] bg-zinc-700 transition-all duration-300 -translate-x-full opacity-0"></div>
+                        </li>
+                    </Link>
+                ))}
 
-
-                <Link href={"/"}> 
-                    <li className='md:text-[1vw] lg:text-[1.1vw] px-[.7vw] py-[.2vw] rounded-full font-medium text-zinc-700 group hover:bg-green-200 transition-all duration-300 overflow-hidden leading-[1.3vw]'>Tools
-                        <div className="group-hover:translate-x-0 group-hover:opacity-100 w-full h-[2px] bg-zinc-700 transition-all duration-300 -translate-x-full opacity-0"></div>
-                    </li>
-                </Link>
-
-
-                <Link href={"/"}> 
-                    <li className='md:text-[1vw] lg:text-[1.1vw] px-[.7vw] py-[.2vw] rounded-full font-medium text-zinc-700 group hover:bg-green-200 transition-all duration-300 overflow-hidden leading-[1.3vw]'>About
-                        <div className=" group-hover:translate-x-0 group-hover:opacity-100 w-full h-[2px] bg-zinc-700 transition-all duration-300 -translate-x-full opacity-0 "></div>
-                    </li>
-                </Link>
-
-                <Link href={"/"}> 
-                    <li className='md:text-[1vw] lg:text-[1.1vw] px-[.7vw] py-[.2vw] rounded-full font-medium text-zinc-700 group hover:bg-green-200 transition-all duration-300 overflow-hidden leading-[1.3vw]'>Contact Us
-                        <div className=" group-hover:translate-x-0 group-hover:opacity-100 w-full h-[2px] bg-zinc-700 transition-all duration-300 -translate-x-full opacity-0 "></div>
-                    </li>
-                </Link>
             </ul>
         </div>
 

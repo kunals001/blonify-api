@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from 'react-hot-toast'
 import Navbar from "@/components/Navbar";
 import { AuthProvider } from "@/components/AuthProvider";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Blonify",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <AuthProvider>
           <Navbar />
         {children}
+        <Footer/>
         <Toaster position="top-right" />
         </AuthProvider>
       </body>
