@@ -1,5 +1,7 @@
 import User from "../models/user.model.js";
 import Post from "../models/post.model.js";
+import ImageKit from "imagekit";
+import 'dotenv/config'
 
 export const createPost = async (req, res) => {
     try {
@@ -66,7 +68,7 @@ export const createPost = async (req, res) => {
     }
 };
 
-export const getPosts = (req,res) => {
+export const getPosts = async (req,res) => {
     try {
         res.status(200).json({success:true,message:"Posts fetched successfully"})
     } catch (error) {
@@ -75,7 +77,7 @@ export const getPosts = (req,res) => {
     }
 }
 
-export const getSlug = (req,res) => {
+export const getSlug = async (req,res) => {
     try {
         res.status(200).json({success:true,message:"Posts fetched successfully"})
     } catch (error) {
@@ -83,3 +85,47 @@ export const getSlug = (req,res) => {
         res.status(500).json({success:false,message:"Internal Server Error in get posts"})
     }
 }
+
+export const deletePost = async(req,res) => {
+    try {
+
+        const post = await Post.findByIdAndDelete(req.params.id);
+
+        if(!post){
+            return res.status(404).json({success:false,message:"Post not found"})
+        }
+
+        res.status(200).json({success:true,message:"Posts Deleted successfully"})
+    } catch (error) {
+        console.log("error in get posts",error.message);
+        res.status(500).json({success:false,message:"Internal Server Error in get posts"})
+    }
+}
+
+export const uploadAuth = async (req, res) => {
+    const imagekit = new ImageKit({
+        urlEndpoint: process.env.IK_URL_ENDPOINT,
+        publicKey: process.env.IK_PUBLIC_KEY,
+        privateKey: process.env.IK_PRIVATE_KEY,
+    });
+
+    try {
+        const result = imagekit.getAuthenticationParameters();
+
+        res.status(200).json({
+    success: true,
+    message: "Upload auth successful",
+    signature: result.signature,
+    expire: result.expire,
+    token: result.token,
+    publicKey: process.env.IK_PUBLIC_KEY,
+});
+
+    } catch (error) {
+        console.error("Error in uploadAuth:", error.message);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error in uploadAuth",
+        });
+    }
+};

@@ -25,6 +25,15 @@ app.use("/api/user",userRoutes);
 app.use("/api/posts",postRoutes);
 app.use("/api/comments",commentRoutes);
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.listen(PORT, () => {
     connectDb();
     console.log(`Server is running on port ${PORT}`);

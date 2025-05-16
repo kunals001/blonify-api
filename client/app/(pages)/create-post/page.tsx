@@ -2,10 +2,46 @@
 import ProtectedAdminRoute from '@/components/AdminProtect'
 import SunEditorComponent from '@/components/Draft'
 import { LetterText, SquarePen } from 'lucide-react'
-import React, { useRef } from 'react'
+import { useEffect, useState } from 'react'
+import { usePostStore } from '@/store/postStore'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
+import Upload from '@/components/upload'
+import { useAuthStore } from '@/store/authStore'
+
 
 const page = () => {
-    const filePickref = useRef<HTMLInputElement>(null);
+    const [content,setContent] = useState('');
+    const [coverImg,setCoverImg] = useState("");
+    const router = useRouter();
+    const {createPost,error,isLoading} = usePostStore();
+    const {user} = useAuthStore();
+
+    useEffect(() => {
+        if (!user?.isAdmin) {
+          router.push("/signin");
+        }
+    }, [user]);
+
+    const handleSubmit = async (e:any) =>{
+        e.preventDefault();
+        try {
+            const formData = new FormData(e.target);
+            const data = {
+                title: formData.get("title") as string,
+                desc: formData.get("desc") as string,
+                content: content,
+                category: formData.get("category") as string,
+                coverImg: coverImg
+            }
+
+            await createPost(data);
+            toast.success("Post created successfully")
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
   return (
     <ProtectedAdminRoute>
@@ -14,41 +50,55 @@ const page = () => {
                 Create A Post
             </h1>
 
-            <form className='flex flex-col w-full mt-[1vh] md:mt-[.8vw] lg:mt-[.8vw] gap-[.6vw]'>
+            <form onSubmit={handleSubmit}  className='flex flex-col w-full mt-[1vh] md:mt-[.8vw] lg:mt-[.8vw] gap-[.6vw]'>
+
+                {/* title */}
                 <div className="relative w-full flex items-center justify-center">
-                    <input type="name" placeholder="Title" className='w-full px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative' />
+                    <input name='title' type="title" placeholder="Title" className='w-full px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative' />
 
                     <LetterText className='absolute text-prime left-0 pl-[.5vh] md:pl-[.5vw] lg:pl-[.5vw] cursor-pointer size-6 md:size-8 lg:size-8'/>
 
+                    {/* category */}
+
                     <div className="w-[8vw] pl-[.5vw] ">
-                        <select className='px-[.5vw] py-[.5vw] outline-none rounded-xl bg-zinc-100 text-[1vw] cursor-pointer h-[2.7vw] border-1 border-prime w-full'>
+                        <select name='category' className='px-[.5vw] py-[.5vw] outline-none rounded-xl bg-zinc-100 text-[1vw] cursor-pointer h-[2.7vw] border-1 border-prime w-full'>
                           <option value='uncategorized'>Category </option>
-                          <option value='Mobiles'>Mobiles</option>
-                          <option value='Laptops'>Laptops</option>
-                          <option value='Watches'>Watches</option>
+                          <option value='mobiles'>Mobiles</option>
+                          <option value='laptops'>Laptops</option>
+                          <option value='watches'>Watches</option>
                         </select>
                     </div>
                 </div>
 
+                {/* description */}
+
                  <div className="relative w-full flex items-center justify-center">
-                    <textarea  placeholder="Description" className='w-full px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative resize-none' />
+                    <textarea name='desc' placeholder="Description" className='w-full px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative resize-none' />
 
                     <SquarePen className='absolute text-prime left-0 top-0 pl-[.5vh] md:pl-[.5vw] lg:pl-[.5vw] cursor-pointer size-6 md:size-10 lg:size-9 pt-[.6vw] block'/>
                 </div>
 
-                <div className="w-full flex items-center justify-between  px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative">
-                    <input ref={filePickref} type="file" className='w-1/2 outline-none rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 ' />
+                {/* cover image */}
 
-                    <button onClick={() => filePickref.current?.click()} className='text-xl px-[.5vw] rounded-lg border-zinc-500 border-2 cursor-pointer bg-second text-prime'>Upload Image</button>
+                <div className="w-full flex items-center justify-between  px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative">
+
+                    <Upload />
+                    
                 </div>
 
-                <SunEditorComponent/>
+                {/* content */}
 
+                <SunEditorComponent setcontent={content} onchange={setContent} />
+
+                {error && <p className='text-red-500 text-[1.3vh] md:text-[1vw] lg:text-[1vw]'>{error}</p>}
+
+                {/* Post */}
                 <button 
                 className='mt-5 w-full py-3 px-4 bg-gradient-to-r  from-green-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg hover:from-green-600hover:to-emerald-700 outline-none focus:ring-2 focus:ring-green-500  transition duration-200 cursor-pointer'
 					type='submit'
+                    disabled={isLoading}
                 >
-					Post
+					{isLoading ? "Posting..." : "Post"}
 				</button>
                 
             </form>

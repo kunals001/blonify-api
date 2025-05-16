@@ -1,6 +1,6 @@
 import {create} from "zustand";
 import axios from "axios";
-import { profile } from 'console';
+
 
 const API_URL = process.env.NEXT_PUBLIC_API_KEY;
 const API_URL_2 = process.env.NEXT_PUBLIC_API_KEY_2;
@@ -12,7 +12,6 @@ type User = {
     name: string;
     email: string;
     password: string;
-    profilePicture: string | Blob | "https://ik.imagekit.io/8jagcyqun/user.png?updatedAt=1747286931410";
     isAdmin: boolean
 };
 

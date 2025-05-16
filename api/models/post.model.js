@@ -20,6 +20,10 @@ const postSchema = new mongoose.Schema({
     desc:{
         type:String,
     },
+    category:{
+        type:String,
+        default:"uncategorized",
+    },
     content:{
         type:String,
         required:true,
@@ -28,7 +32,7 @@ const postSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
-    visit:{
+    visits:{
         type:Number,
         default:0,
     }
