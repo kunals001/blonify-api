@@ -13,6 +13,7 @@ type Post = {
   content: string;
   category: string | null;
   isFeatured: boolean | null;
+  altText: string | null;
 };
 
 type PostState = {
@@ -25,6 +26,7 @@ type PostState = {
     content: string;
     category: string;
     coverImg: string | File | null | undefined;
+    altText: string | null;
   }) => Promise<void>;
 };
 
@@ -33,7 +35,7 @@ export const usePostStore = create<PostState>((set) => ({
   isLoading: false,
   error: null,
 
-  createPost: async ({ title, desc, content, category,coverImg  }) => {
+  createPost: async ({ title, desc, content, category,coverImg ,altText }) => {
     set({ isLoading: true, error: null });
 
     try {
@@ -42,7 +44,8 @@ export const usePostStore = create<PostState>((set) => ({
         desc,
         content,
         category,
-        coverImg
+        coverImg,
+        altText
       });
 
       set({ post: response.data, isLoading: false });

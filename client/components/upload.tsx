@@ -78,7 +78,7 @@ const Upload = ({ coverImg, setCoverImg, onUploadComplete }: any) => {
 
   return (
     <div>
-      <label className="bg-prime hover:bg-green-700 text-white font-bold py-2 px-4 rounded cursor-pointer inline-block">
+      <label className="bg-prime hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg cursor-pointer inline-block">
         Select File
         <input
           type="file"

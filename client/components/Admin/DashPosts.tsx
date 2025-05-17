@@ -1,8 +1,13 @@
 import React from 'react'
+import ProtectedAdminRoute from '../AdminProtect'
 
 const DashPosts = () => {
   return (
-    <div>DashPosts</div>
+    <ProtectedAdminRoute>
+      <div className=''>
+        
+      </div>
+    </ProtectedAdminRoute>
   )
 }
 

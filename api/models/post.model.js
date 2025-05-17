@@ -18,6 +18,9 @@ const postSchema = new mongoose.Schema({
         required:true,
         unique:true
     },
+    altText:{
+        type:String,
+    },
     desc:{
         type:String,
     },
