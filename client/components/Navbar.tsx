@@ -122,7 +122,7 @@ const Navbar = () => {
                    <Link href={'/profile'}> <h3 className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full'>{user.name}</h3></Link>
 
                    {user.isAdmin ?(
-                    <Link href={'/admin-dashboard?tab=posts'}><div className="'text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full text-zinc-200">Admin</div></Link>
+                    <Link href={'/admin-dashboard?tab=dashposts'}><div className="'text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-zinc-600 cursor-pointer transition-all duration-300 md:w-full lg:w-full text-zinc-200">Admin</div></Link>
                    ):("")}
 
                     <h3 onClick={handlelogout} className='text-zinc-100 text-[1vw] px-[.4vw] py-[.1vw] rounded-md hover:bg-red-400 cursor-pointer transition-all duration-300'>logout</h3>

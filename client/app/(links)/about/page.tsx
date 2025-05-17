@@ -36,7 +36,7 @@ const page = () => {
           </p>
 
           <p className='w-full md:w-[30vw] text-[1.3vh] md:text-[1vw]'>
-            <span className='font-semibold'>Email:</span>  <a href='https://mail.google.com/'   className='text-blue-500'>blonify25@gmail.com</a>
+            <span className='font-semibold'>Email:</span>  <a href='mailto:blonify25@gmail.com'   className='text-prime'>blonify25@gmail.com</a>
           </p>
 
           <p className='w-full md:w-[30vw] text-[1.3vh] md:text-[1vw]'>

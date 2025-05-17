@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { useAuthStore } from '@/store/authStore'
-import { Upload, User,Lock, Loader } from 'lucide-react';
+import {  User,Lock, Loader } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';

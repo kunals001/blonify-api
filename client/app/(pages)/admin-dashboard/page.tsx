@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import ProtectedAdminRoute from '@/components/AdminProtect';
-import DashSidebar from '@/components/DashSidebar';
-import DashPosts from '@/components/DashPosts';
+import DashSidebar from '@/components/Admin/DashSidebar';
+import CreatePosts from '@/components/Admin/CreatePosts';
 import { useSearchParams } from 'next/navigation';
+import DashPosts from '@/components/Admin/DashPosts';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -26,7 +27,8 @@ const Page = () => {
         </div>
 
         <div className="md:w-[calc(100%-12vw)] lg:w-[calc(100%-13vw)] md:pl-[14vw] lg:pl-[14vw] md:py-[1vw] lg:py-[1vw]">
-          {tab === 'posts' && <DashPosts />}
+          {tab === 'create-posts' && <CreatePosts />}
+          {tab === 'dashposts' && <DashPosts />}
         </div>
       </div>
     </ProtectedAdminRoute>

@@ -41,6 +41,8 @@ const page = () => {
       <PostList/>
 
     </div>
+
+    
   )
 }
 

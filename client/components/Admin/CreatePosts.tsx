@@ -1,6 +1,6 @@
 "use client"
 import ProtectedAdminRoute from '@/components/AdminProtect'
-import SunEditorComponent from '@/components/Draft'
+import SunEditor from '@/components/SunEditor'
 import { LetterText, SquarePen } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { usePostStore } from '@/store/postStore'
@@ -45,7 +45,7 @@ const page = () => {
 
   return (
     <ProtectedAdminRoute>
-        <div className='w-full min-h-screen md:px-[13vw] lg:px-[15vw] md:pt-[2vw] lg:p-[2.1vw] flex flex-col md:gap[.8vw] lg:gap-[.9vw]'>
+        <div className='w-full min-h-screen md:pt-[2vw] lg:p-[2.1vw] flex flex-col md:gap[.8vw] lg:gap-[.9vw]'>
             <h1 className='text-[3vh] md:text-[2vw] lg:text-[2vw] select-none mx-auto font-semibold text-center bg-gradient-to-r from-prime to-emerald-500 text-transparent bg-clip-text'>
                 Create A Post
             </h1>
@@ -88,7 +88,7 @@ const page = () => {
 
                 {/* content */}
 
-                <SunEditorComponent setcontent={content} onchange={setContent} />
+                <SunEditor setcontent={content} onchange={setContent} />
 
                 {error && <p className='text-red-500 text-[1.3vh] md:text-[1vw] lg:text-[1vw]'>{error}</p>}
 

@@ -22,8 +22,8 @@ import commentRoutes from "./routes/comment.route.js"
 
 app.use("/api/auth",authRoutes);
 app.use("/api/user",userRoutes);
-app.use("/api/posts",postRoutes);
-app.use("/api/comments",commentRoutes);
+app.use("/api/post",postRoutes);
+app.use("/api/comment",commentRoutes);
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -38,4 +38,3 @@ app.listen(PORT, () => {
     connectDb();
     console.log(`Server is running on port ${PORT}`);
 })
-

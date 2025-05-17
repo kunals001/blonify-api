@@ -7,6 +7,7 @@ import {createPost,getSlug,getPosts,deletePost,uploadAuth} from "../controllers/
 
 
 router.get("/upload-auth",protectRoute,uploadAuth)
+
 router.post("/create",protectRoute,createPost)
 router.get("/get-post",getPosts)
 router.get("/:slug",getSlug)
