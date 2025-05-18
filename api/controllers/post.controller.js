@@ -118,7 +118,6 @@ export const getPosts = async (req,res) => {
     }
 }
 
-
 export const editPost = async (req,res) => {
     try {
         

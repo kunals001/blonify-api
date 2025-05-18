@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import Upload from '@/components/upload'
 import { useAuthStore } from '@/store/authStore'
 import { useParams } from 'next/navigation'
+import MobilePost from '../MobilePost'
 
 
 const page = () => {
@@ -31,6 +32,17 @@ const page = () => {
         e.preventDefault();
         try {
             const formData = new FormData(e.target);
+
+             const network = [
+               {
+                 technology: formData.get("technology") as string,
+                 towbands: formData.get("towbands") as string,
+                 threebands: formData.get("threebands") as string,
+                 fourbands: formData.get("fourbands") as string,
+                 fivebands: formData.get("fivebands") as string,
+                 speed: formData.get("speed") as string,
+               }
+             ];
             const data = {
                 title: formData.get("title") as string,
                 desc: formData.get("desc") as string,
@@ -38,7 +50,8 @@ const page = () => {
                 category: formData.get("category") as string,
                 coverImg: coverImg,
                 altText: formData.get("altText") as string,
-                userId: user?._id
+                userId: user?._id,
+                network,
             }
 
             await createPost(data);
@@ -103,6 +116,8 @@ const page = () => {
                     <Upload coverImg={coverImg} setCoverImg={setCoverImg} />
                     
                 </div>
+
+                <MobilePost />
 
                 {/* content */}
 

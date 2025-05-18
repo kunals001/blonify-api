@@ -3,7 +3,7 @@ import express from 'express'
 const router = express.Router()
 
 import {protectRoute} from "../middlewares/protectRoute.js"
-import {createPost,getSlug,getPosts,deletePost,uploadAuth,editPost} from "../controllers/post.controller.js"
+import {createPost,getPosts,deletePost,uploadAuth,editPost} from "../controllers/post.controller.js"
 
 
 router.get("/upload-auth",protectRoute,uploadAuth)

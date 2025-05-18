@@ -31,14 +31,7 @@ type PostState = {
   startIndex: number;
   limit: number;
   showMore: boolean;
-  createPost: (data: {
-    title: string;
-    desc: string;
-    content: string;
-    category: string;
-    coverImg: string | File | null | undefined;
-    altText: string | null;
-  }) => Promise<void>;
+  createPost: (data: Record<string, any>) => Promise<void>;
   getPosts: () => Promise<void>;
   getMorePosts: () => Promise<void>;
   deletePost: (postId: string) => Promise<void>;
@@ -56,24 +49,17 @@ export const usePostStore = create<PostState>((set, get) => ({
   limit: 10, 
   showMore: true,
 
-  createPost: async ({ title, desc, content, category, coverImg, altText }) => {
-      set({ isLoading: true, error: null });
-      try {
-      const response = await axios.post(`${API_URL_3}/create`, {
-        title,
-        desc,
-        content,
-        category,
-        coverImg,
-        altText,
-      });
-      set({ post: response.data, isLoading: false });
-    } catch (error: any) {
-      const msg = error?.response?.data?.message || "Post creation failed";
-      set({ error: msg, isLoading: false });
-      throw new Error(msg);
-    }
-  },
+  createPost: async (data) => {
+  set({ isLoading: true, error: null });
+  try {
+    const response = await axios.post(`${API_URL_3}/create`, data);
+    set({ post: response.data, isLoading: false });
+  } catch (error: any) {
+    const msg = error?.response?.data?.message || "Post creation failed";
+    set({ error: msg, isLoading: false });
+    throw new Error(msg);
+  }
+},
 
   getPosts: async () => {
     const { user } = useAuthStore.getState();
