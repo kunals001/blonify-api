@@ -118,9 +118,10 @@ export const getPosts = async (req,res) => {
     }
 }
 
-export const getSlug = async (req,res) => {
+
+export const editPost = async (req,res) => {
     try {
-        res.status(200).json({success:true,message:"Posts fetched successfully"})
+        
     } catch (error) {
         console.log("error in get posts",error.message);
         res.status(500).json({success:false,message:"Internal Server Error in get posts"})
