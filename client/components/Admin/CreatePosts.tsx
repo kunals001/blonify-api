@@ -37,7 +37,8 @@ const page = () => {
                 content: content,
                 category: formData.get("category") as string,
                 coverImg: coverImg,
-                altText: formData.get("altText") as string
+                altText: formData.get("altText") as string,
+                userId: user?._id
             }
 
             await createPost(data);
