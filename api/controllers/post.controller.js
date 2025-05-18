@@ -40,7 +40,7 @@ export const createPost = async (req, res) => {
         // Creating post object
         const newPost = new Post({
             ...req.body,
-            user: user._id,
+            userId: user._id,
             slug,
         });
 
@@ -72,7 +72,7 @@ export const getPosts = async (req,res) => {
     try {
 
         const startIndex = parseInt(req.query.startIndex) || 0;
-        const limit = parseInt(req.query.limit) || 10;
+        const limit = parseInt(req.query.limit);
         const sortDirection = req.query.order === "asc" ? 1 : -1;
 
         const posts = await Post.find({
@@ -129,6 +129,13 @@ export const getSlug = async (req,res) => {
 
 export const deletePost = async(req,res) => {
     try {
+
+        if (!req.user?.isAdmin) {
+            return res.status(403).json({
+                success: false,
+                message: "Only admins can delete posts",
+            });
+        }
 
         const post = await Post.findByIdAndDelete(req.params.id);
 
