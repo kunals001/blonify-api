@@ -33,8 +33,8 @@ const postSchema = new mongoose.Schema({
         required:true,
     },
     isFeatured:{
-        type:Boolean,
-        default:false,
+        type:String,
+        default:"false",
     },
     visits:{
         type:Number,
@@ -200,12 +200,11 @@ const postSchema = new mongoose.Schema({
             }
         }
     ],
-    maincameratype:{
-        type:String,
-        default:"Triple"
-    },
     maincam:[
         {
+            type:{
+                type:String
+            },
             mp:{
                 type:String
             },
@@ -229,12 +228,11 @@ const postSchema = new mongoose.Schema({
             }
         }
     ],
-    selfiecam:{
-        type:String,
-        default:"Single"
-    },
     frontcam:[
         {
+            type:{
+                type:String
+            },
             mp:{
                 type:String
             },
@@ -311,21 +309,17 @@ const postSchema = new mongoose.Schema({
         }
     ],
     ismobile:{
-        type:Boolean,
-        default:false
+        type:String,
+        default:"false"
     },
     islaptop:{
-        type:Boolean,
-        default:false
+        type:String,
+        default:"false"
     },
     iswatch:{
-        type:Boolean,
-        default:false
+        type:String,
+        default:"false"
     },
-    rating:{
-        type:Number,
-        default:0
-    }
 
 },{timestamps:true});
 

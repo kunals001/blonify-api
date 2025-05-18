@@ -33,16 +33,170 @@ const page = () => {
         try {
             const formData = new FormData(e.target);
 
-             const network = [
-               {
-                 technology: formData.get("technology") as string,
-                 towbands: formData.get("towbands") as string,
-                 threebands: formData.get("threebands") as string,
-                 fourbands: formData.get("fourbands") as string,
-                 fivebands: formData.get("fivebands") as string,
-                 speed: formData.get("speed") as string,
-               }
-             ];
+             // 1. Network Section
+            const network = [
+            {
+                technology: formData.get("technology") as string,
+                towbands: formData.get("towbands") as string,
+                threebands: formData.get("threebands") as string,
+                fourbands: formData.get("fourbands") as string,
+                fivebands: formData.get("fivebands") as string,
+                speed: formData.get("speed") as string,
+            },
+            ];
+
+            // Launch
+
+            const launch = [
+              {
+                date: formData.get("date") as string,
+                status: formData.get("status") as string,
+              },
+            ];
+
+            // 2. Body Section
+            const body = [
+              {
+                dimensions: formData.get("dimensions") as string,
+                weight: formData.get("weight") as string,
+                build: formData.get("build") as string,
+                sim: formData.get("sim") as string,
+              },
+            ];
+
+            // Display
+
+            const display = [
+              {
+                type: formData.get("type") as string,
+                size: formData.get("size") as string,
+                resolution: formData.get("resolution") as string,
+                refreshrate: formData.get("refreshrate") as string,
+                protection: formData.get("protection") as string,
+                pixle: formData.get("pixle") as string,
+                big: formData.get("big") as string,
+              },
+            ];
+
+            // 3. Platform Section
+            const platform = [
+              {
+                os: formData.get("os") as string,
+                chipset: formData.get("chipset") as string,
+                cpu: formData.get("cpu") as string,
+                gpu: formData.get("gpu") as string,
+                process: formData.get("process") as string,
+                ram: formData.get("ram") as string,
+              },
+            ];
+
+         // 4. Memory Section
+         const memory = [
+           {
+             cardslot: formData.get("cardslot") as string,
+             ram: formData.get("ram") as string,
+             storage: formData.get("storage") as string,
+           },
+         ];
+
+         // Permormance
+         const permormance = [
+           {
+             antutuscore: formData.get("antutuscore") as string,
+             geeksbenchscore: formData.get("geeksbenchscore") as string,
+             pubgfps: formData.get("pubgfps") as string,
+             freefirefps: formData.get("freefirefps") as string,
+             callofdutyfps: formData.get("callofdutyfps") as string,
+           },
+         ];
+
+         // Battery
+
+         const battery = [
+           {
+             type: formData.get("type") as string,
+             capacity: formData.get("capacity") as string,
+             fastcharge: formData.get("fastcharge") as string,
+             gamingbackup: formData.get("gamingbackup") as string,
+             standbybackup: formData.get("standbybackup") as string,
+             mah: formData.get("mah") as string,
+             wiredcharge: formData.get("wiredcharge") as string,
+             wirelesscharge: formData.get("wirelesscharge") as string,
+           },
+         ];
+
+
+         // Main camera
+
+         const maincam = [
+           {
+            type: formData.get("type") as string,
+            mp: formData.get("mp") as string,
+            resolution: formData.get("resolution") as string,
+            zoom: formData.get("zoom") as string,
+            features: formData.get("features") as string,
+            videofps: formData.get("videofps") as string,
+            mega: formData.get("mega") as string,
+            pixel: formData.get("pixel") as string,
+           },
+         ];
+
+
+         // Front camera
+
+         const frontcam = [
+           {
+            type: formData.get("type") as string,
+            mp: formData.get("mp") as string,
+            resolution: formData.get("resolution") as string,
+            features: formData.get("features") as string,
+            videofps: formData.get("videofps") as string,
+           },
+         ];
+
+         // Sound
+
+         const sound = [
+           {
+               speaker: formData.get("speaker") as string,
+               headphonejack: formData.get("headphonejack") as string,
+               quality: formData.get("quality") as string
+           }
+         ]
+
+         // Comms
+
+         const comms = [
+           {
+               wifi: formData.get("wifi") as string,
+               bluetooth: formData.get("bluetooth") as string,
+               gps: formData.get("gps") as string,
+               nfc: formData.get("nfc") as string
+           }
+         ]
+
+         // Features
+
+         const features = [
+           {
+               sensor: formData.get("sensor") as string,
+               fingerprint: formData.get("fingerprint") as string,
+               faceunlock: formData.get("faceunlock") as string,
+               ir: formData.get("ir") as string
+           }
+         ]
+
+         // Mics
+
+         const mics = [
+           {
+               color: formData.get("color") as string,
+               quality: formData.get("quality") as string,
+               model: formData.get("model") as string,
+               price: formData.get("price") as string,
+           }
+         ]
+  
             const data = {
                 title: formData.get("title") as string,
                 desc: formData.get("desc") as string,
@@ -50,8 +204,28 @@ const page = () => {
                 category: formData.get("category") as string,
                 coverImg: coverImg,
                 altText: formData.get("altText") as string,
+                ismobile:formData.get("ismobile") as string,
+                islaptop:formData.get("islaptop") as string,
+                iswatch:formData.get("iswatch") as string,
+                rating:formData.get("ismobile") as string,
+                isFeatured: formData.get("isFeatured") as string,
                 userId: user?._id,
-                network,
+                 network,
+                 body,
+                 launch,
+                 display,
+                 platform,
+                 memory,
+                 permormance,
+                 battery,
+                 maincam,
+                 frontcam,
+                 sound,
+                 comms,
+                 features,
+                 mics,
+
+                 
             }
 
             await createPost(data);
