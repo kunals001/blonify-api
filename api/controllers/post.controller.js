@@ -72,7 +72,7 @@ export const getPosts = async (req,res) => {
     try {
 
         const startIndex = parseInt(req.query.startIndex) || 0;
-        const limit = parseInt(req.query.limit);
+        const limit = parseInt(req.query.limit) || 10;
         const sortDirection = req.query.order === "asc" ? 1 : -1;
 
         const posts = await Post.find({
@@ -129,15 +129,15 @@ export const getSlug = async (req,res) => {
 
 export const deletePost = async(req,res) => {
     try {
-
-        if (!req.user?.isAdmin) {
+        
+        if (!req.user?.isAdmin || req.user.id !== req.params.userId) {
             return res.status(403).json({
                 success: false,
                 message: "Only admins can delete posts",
             });
         }
 
-        const post = await Post.findByIdAndDelete(req.params.id);
+        const post = await Post.findByIdAndDelete(req.params.postId);
 
         if(!post){
             return res.status(404).json({success:false,message:"Post not found"})

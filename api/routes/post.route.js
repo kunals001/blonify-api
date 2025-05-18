@@ -11,7 +11,7 @@ router.get("/upload-auth",protectRoute,uploadAuth)
 router.post("/create",protectRoute,createPost)
 router.get("/get-post",getPosts)
 router.get("/:slug",getSlug)
-router.delete("/delete-post/:id",protectRoute,deletePost)
+router.delete("/delete-post/:postId/:userId",protectRoute,deletePost)
 
 
 export default router
