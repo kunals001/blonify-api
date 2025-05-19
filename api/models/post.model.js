@@ -36,6 +36,9 @@ const postSchema = new mongoose.Schema({
         type:String,
         default:"false",
     },
+    keywords:{
+        type:String
+    },
     visits:{
         type:Number,
         default:0,

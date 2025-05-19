@@ -10,6 +10,7 @@ import Upload from '@/components/upload'
 import { useAuthStore } from '@/store/authStore'
 import { useParams } from 'next/navigation'
 import MobilePost from '../MobilePost'
+import InputPost from '../InputPost'
 
 
 const page = () => {
@@ -198,6 +199,8 @@ const page = () => {
             const data = {
                 title: formData.get("title") as string,
                 desc: formData.get("desc") as string,
+                highlight: formData.get("highlight") as string,
+                keywords: formData.get("keywords") as string,
                 content: content,
                 category: formData.get("category") as string,
                 coverImg: coverImg,
@@ -228,7 +231,7 @@ const page = () => {
 
             await createPost(data);
             toast.success("Post created successfully")
-            // router.push(`/article/${slug}`)
+            router.push(`/article/${slug}`)
             
         } catch (error) {
             console.log(error);
@@ -280,6 +283,18 @@ const page = () => {
                     <textarea name='desc' placeholder="Description" className='w-full px-[2.5vh] md:px-[2vw] lg:px-[2vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative resize-none' />
 
                     <SquarePen className='absolute text-prime left-0 top-0 pl-[.5vh] md:pl-[.5vw] lg:pl-[.5vw] cursor-pointer size-6 md:size-10 lg:size-9 pt-[.6vw] block'/>
+                </div>
+
+                {/* HighLight */}
+
+                <div className="w-full">
+                  <InputPost name='highlight' placeholder='Highlight' />
+                </div>
+
+                {/* KeyWord */}
+
+                 <div className="w-full">
+                  <InputPost name='keywords' placeholder='Keywords' />
                 </div>
 
                 {/* cover image */}
