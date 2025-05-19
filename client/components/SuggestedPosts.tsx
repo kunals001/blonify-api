@@ -6,7 +6,7 @@ const SuggestedPosts = () => {
 
   return (
     <div className=''>
-
+       
     </div>
   )
 }

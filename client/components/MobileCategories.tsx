@@ -11,9 +11,6 @@ const MobileCategories = () => {
     { label: "Daily", href: "/daily" },
     { label: "Mobiles", href: "/mobiles" },
     { label: "Laptops", href: "/laptops" },
-    { label: "Watches", href: "/watches" },
-    { label: "Tools", href: "/tools" },
-    { label: "Compare", href: "/compare" },
   ];
 
   return (
