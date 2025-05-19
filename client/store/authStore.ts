@@ -18,10 +18,19 @@ type User = {
 
 type AuthState = {
     user: User | null;
+    userData: any | null;
     isAuthenticated: boolean;
     error: string | null;
     isLoading: boolean;
     isCheckingAuth: boolean;
+    totalUsers: number | null;
+    lastMonthUsers: number | null;
+    startIndex: number;
+    limit: number;
+    showMore: boolean;
+    users?: any[] | undefined; 
+    getUsers: () => Promise<void>;
+    getMoreUsers: () => Promise<void>;
     signup: (data: { name: string; email: string; password: string }) => Promise<void>;
     verifyEmail: (data:{code:string}) => Promise<any>;
     googleSignup: (data:{name:string,email:string,profilePicture:string}) => Promise<any>;
@@ -33,15 +42,23 @@ type AuthState = {
     checkAuth: () => Promise<void>;
     updateProfile: (data:{name:string,password:string}) => Promise<any>;
     profilePicUpload: (data:{profilePic:string | Blob }) => Promise<any>;
+    deleteUser: (userId: string) => Promise<void>;
     
   };
 
-export const useAuthStore = create<AuthState>((set) =>({
+export const useAuthStore = create<AuthState>((set,get) =>({
   user: null,
+  users: [],
   isAuthenticated: false,
   error: null,
   isLoading: false,
   isCheckingAuth: true,
+  userData: null,
+  totalUsers: null,
+  lastMonthUsers: null,
+  startIndex: 0,
+  limit: 10, 
+  showMore: true,
 
   signup: async ({ name, email, password }) => {
     set({ isLoading: true, error: null, isAuthenticated: false });
@@ -226,7 +243,110 @@ export const useAuthStore = create<AuthState>((set) =>({
         error?.response?.data?.message || "Signup failed"; 
       set({ error: msg, isLoading: false, isCheckingAuth: false });
   }
+  },
+  getUsers: async () => {
+  const { user } = useAuthStore.getState();
+  if (!user?._id) {
+    set({ error: "User not found" });
+    return;
   }
+
+  set({ isLoading: true, error: null, startIndex: 0 });
+
+  try {
+    const { limit } = useAuthStore.getState();
+
+    const response = await axios.get(`${API_URL_2}/get-users`, {
+      params: {
+        userId: user._id,
+        startIndex: 0,
+        limit,
+      },
+    });
+
+    const { users, totalUsers, lastMonthUsers } = response.data;
+
+    set({
+      userData: users,
+      totalUsers,
+      lastMonthUsers: lastMonthUsers,
+      startIndex: users.length,
+      showMore: users.length < totalUsers,
+      error: null,
+      isLoading: false,
+    });
+  } catch (error: any) {
+    const msg = error?.response?.data?.message || "User fetch failed";
+    set({ error: msg, isLoading: false });
+    throw new Error(msg);
+  }
+},
+
+  getMoreUsers: async () => {
+  const { user } = useAuthStore.getState();
+  if (!user?._id) {
+    set({ error: "User not found" });
+    return;
+  }
+
+  const { startIndex, limit, userData, totalUsers, isLoading, showMore } = useAuthStore.getState();
+
+  if (isLoading || !showMore) return;
+
+  set({ isLoading: true, error: null });
+
+  try {
+    const response = await axios.get(`${API_URL_2}/get-users`, {
+      params: {
+        userId: user._id,
+        startIndex,
+        limit,
+      },
+    });
+
+    const { users: newUsers } = response.data;
+
+    set({
+      userData: [...(userData || []), ...newUsers],
+      startIndex: startIndex + newUsers.length,
+      showMore: startIndex + newUsers.length < (totalUsers ?? 0),
+      isLoading: false,
+    });
+  } catch (error: any) {
+    const msg = error?.response?.data?.message || "More users fetch failed";
+    set({ error: msg, isLoading: false });
+    throw new Error(msg);
+  }
+  },
+
+  deleteUser: async (userId: string) => {
+  const { user } = get(); // ✅ Correct
+
+  if (!user?._id) {
+    set({ error: "User not found" });
+    return;
+  }
+
+  set({ isLoading: true, error: null });
+
+  try {
+    // Delete request to backend
+    await axios.delete(`${API_URL_2}/delete-user/${userId}/${user._id}`);
+
+    const { userData, totalUsers } = get(); // ✅ Pull state using get()
+    const filteredUsers = userData.filter((u: any) => u._id !== userId);
+
+    set({
+      userData: filteredUsers,
+      totalUsers: (totalUsers ?? 1) - 1,
+      isLoading: false,
+    });
+  } catch (error: any) {
+    const msg = error?.response?.data?.message || "Delete user failed";
+    set({ error: msg, isLoading: false });
+  }
+}
+
 
   
 })) 

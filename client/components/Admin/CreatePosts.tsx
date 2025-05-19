@@ -104,9 +104,7 @@ const page = () => {
            {
              antutuscore: formData.get("antutuscore") as string,
              geeksbenchscore: formData.get("geeksbenchscore") as string,
-             pubgfps: formData.get("pubgfps") as string,
-             freefirefps: formData.get("freefirefps") as string,
-             callofdutyfps: formData.get("callofdutyfps") as string,
+             fps: formData.get("pubgfps") as string,
            },
          ];
 
@@ -260,6 +258,7 @@ const page = () => {
                     <div className="w-[8vw] pl-[.5vw] ">
                         <select name='category' className='px-[.5vw] py-[.5vw] outline-none rounded-xl bg-zinc-100 text-[1vw] cursor-pointer h-[2.7vw] border-1 border-prime w-full'>
                           <option value='uncategorized'>Category </option>
+                          <option value='daily'>Daily</option>
                           <option value='mobiles'>Mobiles</option>
                           <option value='laptops'>Laptops</option>
                           <option value='watches'>Watches</option>

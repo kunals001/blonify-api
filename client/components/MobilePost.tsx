@@ -81,9 +81,7 @@ const MobilePost = () => {
          <div className="flex flex-col gap-2">
             <Input name={"antutuscore"} type={"text"} placeholder={"Antutu Score"} />
             <Input name={"geeksbenchscore"} type={"text"} placeholder={"Geeksbench Score"} />
-            <Input name={"pubgfps"} type={"text"} placeholder={"Pubg Fps"} />
-            <Input name={"freefirefps"} type={"text"} placeholder={"Freefire Fps"} />
-            <Input name={"callofdutyfps"} type={"text"} placeholder={"Callofduty Fps"} />
+            <Input name={"fps"} type={"text"} placeholder={"Fps"} />
         </div>
 
 

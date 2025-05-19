@@ -7,7 +7,6 @@ const DashSidebar = () => {
     const [selected, setSelected] = useState("/");
     
       const menuItems = [
-        { label: "Dashboard", href: "/admin-dashboard?tab=dashboard" },
         { label: "Create Post", href: "/admin-dashboard?tab=create-posts" },
         { label: "Posts", href: "/admin-dashboard?tab=dashposts" },
         { label: "Users", href: "/admin-dashboard?tab=dashusers" },

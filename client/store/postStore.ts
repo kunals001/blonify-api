@@ -4,6 +4,8 @@ import { useAuthStore } from "./authStore";
 
 const API_URL_3 = process.env.NEXT_PUBLIC_API_KEY_3;
 
+
+
 axios.defaults.withCredentials = true;
 
 type Post = {
@@ -37,6 +39,7 @@ type PostState = {
   deletePost: (postId: string) => Promise<void>;
   clearPosts: () => void;
 };
+
 
 export const usePostStore = create<PostState>((set, get) => ({
   post: null,
@@ -135,7 +138,6 @@ export const usePostStore = create<PostState>((set, get) => ({
       throw new Error(msg);
     }
   },
-
   deletePost: async (postId: string) => {
     const { user } = useAuthStore.getState();
     if (!user?._id) {

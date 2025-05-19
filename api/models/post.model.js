@@ -161,13 +161,7 @@ const postSchema = new mongoose.Schema({
                 type:String
             },
 
-            pubgfps:{
-                type:String
-            },
-            freefirefps:{
-                type:String
-            },
-            callofdutyfps:{
+            fps:{
                 type:String
             }
         }

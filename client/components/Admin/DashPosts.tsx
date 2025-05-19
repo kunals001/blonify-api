@@ -76,8 +76,6 @@ const DashPosts = () => {
               
                 <TableRow key={post._id} className='hover:bg-green-200'>
                   <TableCell className="font-medium text-gray-600 hover:underline">{post.updatedAt ? new Date(post.updatedAt).toLocaleDateString() : "N/A"}</TableCell>
-
-
                   <TableCell>
                     <Link href={`/article/${post.slug}`}><img src={post?.coverImg as string} alt={post?.altText as string} className='w25 h-15 rounded-md object-cover bg-gray-500'/></Link>
 
