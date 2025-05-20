@@ -10,11 +10,13 @@ import Upload from '@/components/upload'
 import { useAuthStore } from '@/store/authStore'
 import MobilePost from '../MobilePost'
 import InputPost from '../InputPost'
+import { set } from 'date-fns'
 
 
 const page = () => {
     const [content,setContent] = useState('');
     const [coverImg,setCoverImg] = useState("");
+    const [innerImage,setInnerImage] = useState("");
     const router = useRouter();
     const {createPost,error,isLoading} = usePostStore();
     const {user} = useAuthStore();
@@ -200,6 +202,7 @@ const page = () => {
                 content: content,
                 category: formData.get("category") as string,
                 coverImg: coverImg,
+                innerImage:innerImage,
                 altText: formData.get("altText") as string,
                 ismobile:formData.get("ismobile") as string,
                 islaptop:formData.get("islaptop") as string,
@@ -296,6 +299,12 @@ const page = () => {
                 <div className="w-full flex items-center justify-between md:px-[.5vw] lg:px-[.6vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative">
 
                     <Upload coverImg={coverImg} setCoverImg={setCoverImg} />
+                    
+                </div>
+
+                <div className="w-full flex items-center justify-between md:px-[.5vw] lg:px-[.6vw] outline-none py-[1vh] md:py-[.5vw] lg:py-[.5vw] rounded-xl text-[1.3vh] md:text-[1vw] lg:text-[1vw] bg-zinc-100 border-1 border-prime font-second font-medium text-zinc-700 relative">
+
+                    <Upload coverImg={innerImage} setCoverImg={setInnerImage} />
                     
                 </div>
 

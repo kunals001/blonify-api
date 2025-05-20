@@ -9,6 +9,9 @@ const postSchema = new mongoose.Schema({
     coverImg:{
         type:String,
     },
+    innerImage:{
+        type:String
+    },
     title:{
         type:String,
         required:true,

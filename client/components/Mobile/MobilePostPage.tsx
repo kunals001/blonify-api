@@ -73,11 +73,11 @@ const MobilePostPage = ({post}:any) => {
         {/* Featured Card And Info */}
 
         <div className="w-full overflow-hidden relative">
-                   <h2 className="w-full px-[1vh] md:px-[.9vw] py-[.5vh] md:py-[.5vw] bg-green-300 text-zinc-700 font-second text-[1.6vh] md:text-[1.3vw] lg:text-[1.4vw] font-semibold rounded-t-lg">{post.altText}
+                   <h2 className="w-full px-[1vh] md:px-[.9vw] py-[.5vh] md:py-[.5vw] bg-green-300 text-zinc-700 font-second text-[1.6vh] md:text-[1.3vw] lg:text-[1.4vw] font-semibold rounded-t-lg">{post?.altText}
                     </h2>
                      <div className="w-full px-[1vh] md:px-[.9vw] py-[.5vh] md:py-[.5vw] bg-green-200 text-white font-second text-[1.4vh] md:text-[1.2vw] lg:text-[1.3vw] font-semibold rounded-b-lg pb-[.5vh] md:pb-[.5vw] flex gap-[2vh] md:gap-[1vw] ">
                          <div className="pb-[.5vh] md:pb-[.5vw]">
-                            <img src={post.coverImg} alt={post.altText} className='w-[11vh] h-[15vh] md:w-[10vw] md:h-[15vw] lg:w-[10vw] lg:h-[15vw] object-cover rounded-md select-none' />
+                            <img src={post?.innerImage} alt={post?.altText} className='w-[11vh] h-[15vh] md:w-[10vw] md:h-[15vw] lg:w-[10vw] lg:h-[15vw] object-cover rounded-md select-none' />
                          </div>
 
                          <div className="py-[.5vh] md:py-[.5vw] flex flex-col gap-[.2vh] md:gap-[.2vw] text-zinc-700">
