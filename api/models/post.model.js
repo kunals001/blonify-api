@@ -309,16 +309,16 @@ const postSchema = new mongoose.Schema({
         }
     ],
     ismobile:{
-        type:String,
-        default:"false"
+        type:Boolean,
+        default:false
     },
     islaptop:{
-        type:String,
-        default:"false"
+        type:Boolean,
+        default:false
     },
     isdaily:{
-        type:String,
-        default:"false"
+        type:Boolean,
+        default:false
     },
 
 },{timestamps:true});

@@ -7,7 +7,7 @@ import axios from 'axios';
 import MobilePostPage from '@/components/Mobile/MobilePostPage';
 import DailyPostPage from '@/components/Daily/DailyPostPage';
 import "../../../globals.css"
-import Comments from '@/components/Comments';
+import LaptopPostPage from '@/components/Laptop/LaptopPostPage';
 
 interface Post {
   _id?: string;
@@ -176,17 +176,11 @@ const page = () => {
         <meta name="keywords" content={post?.keywords} />
       </Head>
 
-      <div className='overflow-hidden'>
-        {
-          post?.isdaily === "true" && <DailyPostPage post={post}/>
-        },
-        {
-          post?.ismobile === "true" && <MobilePostPage post={post}/>
-        },
-        {
-          post?.islaptop === "true" && <MobilePostPage post={post}/>
-        }
-      </div>
+        <div className='overflow-hidden'>
+          {post?.isdaily && <DailyPostPage post={post} />}
+          {post?.ismobile && <MobilePostPage post={post} />}
+          {post?.islaptop && <LaptopPostPage post={post} />}
+        </div>
     </>
   )
 }

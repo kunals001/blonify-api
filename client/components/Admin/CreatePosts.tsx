@@ -8,7 +8,6 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Upload from '@/components/upload'
 import { useAuthStore } from '@/store/authStore'
-import { useParams } from 'next/navigation'
 import MobilePost from '../MobilePost'
 import InputPost from '../InputPost'
 
@@ -19,9 +18,6 @@ const page = () => {
     const router = useRouter();
     const {createPost,error,isLoading} = usePostStore();
     const {user} = useAuthStore();
-
-    const params = useParams();
-    const slug = params.slug as string;
 
     useEffect(() => {
         if (!user?.isAdmin) {
@@ -207,7 +203,7 @@ const page = () => {
                 altText: formData.get("altText") as string,
                 ismobile:formData.get("ismobile") as string,
                 islaptop:formData.get("islaptop") as string,
-                iswatch:formData.get("iswatch") as string,
+                isdaily:formData.get("isdaily") as string,
                 rating:formData.get("ismobile") as string,
                 isFeatured: formData.get("isFeatured") as string,
                 userId: user?._id,
@@ -231,8 +227,6 @@ const page = () => {
 
             await createPost(data);
             toast.success("Post created successfully")
-            router.push(`/article/${slug}`)
-            
         } catch (error) {
             console.log(error);
         }

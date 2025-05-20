@@ -12,6 +12,7 @@ export const createComment = async (req, res) => {
       postId,
       userId,
       user: userId, 
+      post: postId
     });
 
     await newComment.save();
@@ -39,6 +40,27 @@ export const getComments = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Internal Server Error in get comments",
+    });
+  }
+};
+
+export const getAllComments = async (req, res) => {
+  try {
+    if (!req.user.isAdmin) {
+      return res.status(403).json({ success: false, message: "Unauthorized" });
+    }
+
+    const comments = await Comment.find()
+      .sort({ createdAt: -1 })
+      .populate("user") // Only select name & email
+      .populate("post"); // Select required post fields
+
+    res.status(200).json(comments);
+  } catch (error) {
+    console.log("error in get all comments", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error in get all comments",
     });
   }
 };

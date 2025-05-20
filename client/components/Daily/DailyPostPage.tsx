@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react'
 import ShareLinks from '../ShareLinks'
 import SuggestedPosts from '../SuggestedPosts'
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 import RefreshManage from "@/components/RefreshManage";
+import Comments from '../Comments';
 
 const DailyPostPage = ({post}:any) => {
     const [selected, setSelected] = useState("/");
@@ -55,7 +57,7 @@ const DailyPostPage = ({post}:any) => {
             
           </div>
 
-
+          <Comments postId={post?._id}/>
        </div>
 
         <div className="md:w-[28vw] hidden md:block lg:block lg:w-[30vw] w-full px-[1vh] py-[1vh] md:px-[.6vw] lg:px-[.6vw] sticky top-[7%] h-full">

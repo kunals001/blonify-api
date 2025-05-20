@@ -185,7 +185,7 @@ const MobilePost = () => {
           </select>
 
 
-          <select name='iswatch' className='px-[.5vw] py-[.5vw] outline-none rounded-xl bg-zinc-100 text-[1vw] cursor-pointer h-[2.7vw] border-1 border-prime w-full'>
+          <select name='isdaily' className='px-[.5vw] py-[.5vw] outline-none rounded-xl bg-zinc-100 text-[1vw] cursor-pointer h-[2.7vw] border-1 border-prime w-full'>
             <option value="false" >isDaily</option>
             <option value='true' >true</option>
           </select>
