@@ -1,7 +1,10 @@
 import React from 'react'
 import SuggestedPosts from '../SuggestedPosts'
-import { Battery, CalendarCheck, Camera, Cpu, Microchip, Settings, Smartphone, TabletSmartphone, SendHorizontal } from 'lucide-react';
+import { Battery, CalendarCheck, Camera, Cpu, Microchip, Settings, Smartphone, TabletSmartphone} from 'lucide-react';
 import Comments from '../Comments';
+import ShareLinks from '../ShareLinks';
+import "@/app/globals.css";
+import RefreshManage from "@/components/RefreshManage";
 
 
 const MobilePostPage = ({post}:any) => {
@@ -53,6 +56,7 @@ const MobilePostPage = ({post}:any) => {
 
 
   return (
+    <RefreshManage>
     <article className='w-full flex flex-col md:flex-row min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] gap-[1vh] md:gap-[.5vw] lg:gap-[.6vw] overflow-hidden'>
 
     <div className="w-full">
@@ -63,12 +67,15 @@ const MobilePostPage = ({post}:any) => {
 
         </div>
 
-            {/* Featured Card And Info */}
+        {/* Mobile Share */}
+        <ShareLinks className="md:hidden lg:hidden flex md:flex-col flex-row gap-[1vh] md:gap-[.5vw] items-center md:items-start pb-[1vh]"/>
 
-            <div className="w-full overflow-hidden relative">
-                   <h2 className="w-full px-[1vh] md:px-[.9vw] py-[.5vh] md:py-[.5vw] bg-prime text-white font-second text-[1.6vh] md:text-[1.3vw] lg:text-[1.4vw] font-semibold rounded-t-lg">{post.altText}
+        {/* Featured Card And Info */}
+
+        <div className="w-full overflow-hidden relative">
+                   <h2 className="w-full px-[1vh] md:px-[.9vw] py-[.5vh] md:py-[.5vw] bg-green-300 text-zinc-700 font-second text-[1.6vh] md:text-[1.3vw] lg:text-[1.4vw] font-semibold rounded-t-lg">{post.altText}
                     </h2>
-                     <div className="w-full px-[1vh] md:px-[.9vw] py-[.5vh] md:py-[.5vw] bg-gradient-to-b from-prime to-green-200 text-white font-second text-[1.4vh] md:text-[1.2vw] lg:text-[1.3vw] font-semibold rounded-b-lg pb-[.5vh] md:pb-[.5vw] flex gap-[2vh] md:gap-[1vw] ">
+                     <div className="w-full px-[1vh] md:px-[.9vw] py-[.5vh] md:py-[.5vw] bg-green-200 text-white font-second text-[1.4vh] md:text-[1.2vw] lg:text-[1.3vw] font-semibold rounded-b-lg pb-[.5vh] md:pb-[.5vw] flex gap-[2vh] md:gap-[1vw] ">
                          <div className="pb-[.5vh] md:pb-[.5vw]">
                             <img src={post.coverImg} alt={post.altText} className='w-[11vh] h-[15vh] md:w-[10vw] md:h-[15vw] lg:w-[10vw] lg:h-[15vw] object-cover rounded-md select-none' />
                          </div>
@@ -89,7 +96,7 @@ const MobilePostPage = ({post}:any) => {
                      {featureCards.map(({ Icon, title, subtitle }, index) => (
                        <div
                          key={index}
-                         className="flex flex-col w-[6.7vh] md:w-[7.6vw] bg-prime rounded-sm min-h-[6vh] md:min-h-[10vh] p-[.4vh] md:p-[.5vw] gap-[.4vh]"
+                         className="flex flex-col w-[6.7vh] md:w-[7.6vw] bg-green-300 rounded-sm min-h-[6vh] md:min-h-[10vh] p-[.4vh] md:p-[.5vw] gap-[.4vh]"
                        >
                          <Icon className="size-4 md:size-8" />
                          <span className="text-[1.1vh] md:text-[1.2vw] font-semibold leading-none">
@@ -101,11 +108,13 @@ const MobilePostPage = ({post}:any) => {
                        </div>
                      ))}
                     </div>
-            </div>
+        </div>
 
-         {/* Specification */}
+        
 
-        <div className="flex gap-[.5vh] md:h-[5vh] lg:h-[6vh] h-[3.5vh] mt-[1.2vh] md:mt-[1vw] items-center bg-gradient-to-l from-prime to-green-200 rounded-r-sm"> 
+        {/* Specification */}
+
+        <div className="flex gap-[.5vh] md:h-[5vh] lg:h-[6vh] h-[3.5vh] mt-[1.2vh] md:mt-[1vw] items-center bg-green-200 rounded-r-sm"> 
             <div className='bg-prime h-full md:w-[1vh] w-[.8vh] rounded-sm'></div>
              <h3 className='text-[1.6vh] md:text-[1.3vw] lg:text-[1.4vw] font-semibold text-zinc-600 '>Specification</h3> 
         </div>
@@ -115,7 +124,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>NETWORK</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime '>NETWORK</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -145,9 +154,9 @@ const MobilePostPage = ({post}:any) => {
         {/* Launch */}
 
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
-            <div className="flex gap-[.3vh] md:gap-1 items-center bg-gradient-to-l from-prime to-green-200 md:h-[4vh] lg:h-[5vh] h-[3vh]">
+            <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>LAUNCH</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime '>LAUNCH</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -175,7 +184,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>BODY</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime '>BODY</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -202,9 +211,9 @@ const MobilePostPage = ({post}:any) => {
         {/* Display */}
 
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
-            <div className="flex gap-[.3vh] md:gap-1 items-center bg-gradient-to-l from-prime to-green-200 md:h-[4vh] lg:h-[5vh] h-[3vh]">
+            <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>DISPLAY</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime '>DISPLAY</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -234,7 +243,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>PLATFORM</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>PLATFORM</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -263,7 +272,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>MEMORY</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime '>MEMORY</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -291,7 +300,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>BATTERY</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime '>BATTERY</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -323,7 +332,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>PERFORMANCE</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>PERFORMANCE</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -351,7 +360,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>MAIN CAMERA</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>MAIN CAMERA</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -381,7 +390,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>SELFIE CAMERA</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>SELFIE CAMERA</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -410,7 +419,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>SOUND</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>SOUND</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -438,7 +447,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>COMMS</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>COMMS</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -467,7 +476,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>FEATURES</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>FEATURES</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -496,7 +505,7 @@ const MobilePostPage = ({post}:any) => {
         <div className="mt-[1vh] md:mt-[1vw] overflow-hidden">
             <div className="flex gap-[.3vh] md:gap-1 items-center md:h-[4vh] lg:h-[5vh] h-[3vh]">
                 <div className='bg-prime h-full md:w-[1vh] w-[.8vh]'></div>
-                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-zinc-600 '>MICS</h5>
+                <h5 className='text-[1.4vh] md:text-[1.1vw] lg:text-[1.3vw] font-semibold text-prime'>MICS</h5>
             </div>
 
                 <div className="flex flex-col font-semibold cursor-pointer divide-y divide-zinc-200">
@@ -520,13 +529,37 @@ const MobilePostPage = ({post}:any) => {
 
         </div>
 
-        <Comments/>
+        {/* About post */}
+
+      <div className="flex flex-col md:flex-row lg:flex-row mt-[1.5vh] md:mt-[1.1vw] lg:mt-[1.2vw] gap-[1vh] md:gap-[1vw] lg:gap-[1vw]">
+
+        <div className="w-full flex flex-col gap-[1vh] md:gap-[.7vw] lg:gap-[.8vw]">
+
+          <div className="w-full h-full relative mb-[.6vh] md:mb-[.6vw] bg-green-200 rounded-sm px-[1vh] py-[.5vh] md:py-[.5vw]">
+            <span className="absolute top-0 left-0 w-[.5vh] rounded-lg md:w-[.7vw] bg-prime h-full "></span>
+            
+            <h4 className='text-[2vh] md:text-[1.3vw] lg:text-[1.3vw] font-semibold text-zinc-600 pl-[2vh] md:pl-[1vw] top-0'>Highlight</h4>
+
+            <p className='pl-[2vh] md:pl-[1vw] text-zinc-600 text-[1.5vh] md:text-[1vw] leading-[1.8vh] md:leading-[1.2vw] font-third'>{post?.highlight}</p>
+          </div>
+
+          <div className="font-prime post-content" dangerouslySetInnerHTML={{ __html: post?.content || "" }}>
+            
+          </div>
+        </div>
+
+
+       </div>
+
+       <Comments postId={post?._id}/>
+        
     </div>
 
     <div className="w-full md:w-[35vw]">
       <SuggestedPosts/>
     </div>
     </article>
+    </RefreshManage>
   )
 }
 

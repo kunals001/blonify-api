@@ -14,6 +14,7 @@ type User = {
     password: string;
     isAdmin: boolean
     _id: string
+    token: string
 };
 
 type AuthState = {

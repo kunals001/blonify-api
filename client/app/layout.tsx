@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-prime" cz-shortcut-listen="true">
         <AuthProvider>
-          <Navbar />
+        <Navbar />
         {children}
         <Footer/>
         <Toaster position="top-right" />

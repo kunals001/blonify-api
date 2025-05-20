@@ -3,6 +3,7 @@ import ShareLinks from '../ShareLinks'
 import SuggestedPosts from '../SuggestedPosts'
 import Link from 'next/link';
 import { Search } from 'lucide-react';
+import RefreshManage from "@/components/RefreshManage";
 
 const DailyPostPage = ({post}:any) => {
     const [selected, setSelected] = useState("/");
@@ -16,6 +17,7 @@ const DailyPostPage = ({post}:any) => {
   ];
     
   return (
+    <RefreshManage>
     <article className='w-full min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] pt-[2vh] md:pt-[2vw] lg:p-[2.1vw] flex flex-col gap-[1vh] md:gap[.8vw] lg:gap-[.9vw]'>
 
       {/* Mobile Share */}
@@ -103,6 +105,7 @@ const DailyPostPage = ({post}:any) => {
         </div>
       </div>
     </article>
+    </RefreshManage>
   )
 }
 

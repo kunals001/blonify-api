@@ -9,9 +9,11 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from 'embla-carousel-autoplay'
 import LaptopCarousel from './LaptopCarousel'
+import RefreshManage from "@/components/RefreshManage";
 
 const IsLaptop = () => {
   return (
+    <RefreshManage>
     <div>
          <div className="flex gap-[1vh] md:h-[5vh] lg:h-[5vh] h-[3vh] "> 
             <div className='bg-prime h-full md:w-[2vh] w-[1vh] rounded-md'></div>
@@ -40,6 +42,7 @@ const IsLaptop = () => {
         <CarouselNext className='hidden md:block lg:block' />
        </Carousel>
     </div>
+    </RefreshManage>
   )
 }
 
