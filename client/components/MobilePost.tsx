@@ -56,6 +56,7 @@ const MobilePost = () => {
 
          <div className="flex flex-col gap-2">
             <Input name={"os"} type={"text"} placeholder={"Os"} />
+            <Input name={"osversion"} type={"text"} placeholder={"osversion"} />
             <Input name={"chipset"} type={"text"} placeholder={"Chipset"} />
             <Input name={"gpu"} type={"text"} placeholder={"Gpu"} />
             <Input name={"cpu"} type={"text"} placeholder={"Cpu"} />
@@ -185,7 +186,7 @@ const MobilePost = () => {
 
 
           <select name='iswatch' className='px-[.5vw] py-[.5vw] outline-none rounded-xl bg-zinc-100 text-[1vw] cursor-pointer h-[2.7vw] border-1 border-prime w-full'>
-            <option value="false" >iswatch</option>
+            <option value="false" >isDaily</option>
             <option value='true' >true</option>
           </select>
 

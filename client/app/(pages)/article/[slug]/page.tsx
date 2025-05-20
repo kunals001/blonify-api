@@ -1,31 +1,146 @@
 "use client"
 import React, { useEffect,useState } from 'react'
-import {Search,} from 'lucide-react';
 import Head from 'next/head';
-import Link from 'next/link';
-import Comments from '@/components/Comments';
-import ShareLinks from '@/components/ShareLinks';
-import SuggestedPosts from '@/components/SuggestedPosts';
 import { useParams } from 'next/navigation';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import axios from 'axios';
+import MobilePostPage from '@/components/Mobile/MobilePostPage';
+import DailyPostPage from '@/components/Daily/DailyPostPage';
 import "../../../globals.css"
+import Comments from '@/components/Comments';
 
 interface Post {
+  _id?: string;
   title: string;
-  content?: string;
-  author?: string;
+  slug: string;
+  content: string;
+  desc?: string;
+  coverImg?: string;
+  altText?: string;
+  category?: string;
+  isFeatured?: string;
+  keywords?: string;
+  highlight?: string;
+  visits?: number;
+  ismobile?: string;
+  islaptop?: string;
+  isdaily?: string;
   createdAt: string | number;
   updatedAt: string | number;
-  desc: string;
-  coverImg: string;
-  altText: string;
-  keywords: string;
-  highlight: string;
+
+  network?: {
+    technology?: string;
+    towbands?: string;
+    threebands?: string;
+    fourbands?: string;
+    fivebands?: string;
+    speed?: string;
+  }[];
+
+  launch?: {
+    date?: string;
+    status?: string;
+  }[];
+
+  body?: {
+    dimensions?: string;
+    weight?: string;
+    build?: string;
+    sim?: string;
+  }[];
+
+  display?: {
+    type?: string;
+    resolution?: string;
+    size?: string;
+    refreshrate?: string;
+    protection?: string;
+    pixel?: string;
+    big?: string;
+  }[];
+
+  platform?: {
+    os?: string;
+    osversion?: string;
+    chipset?: string;
+    gpu?: string;
+    cpu?: string;
+    process?: string;
+    ram?: string;
+  }[];
+
+  memory?: {
+    cardslot?: string;
+    ram?: string;
+    storage?: string;
+  }[];
+
+  permormance?: {
+    antutuscore?: string;
+    geeksbenchscore?: string;
+    fps?: string;
+  }[];
+
+  battery?: {
+    battery?: string;
+    capacity?: string;
+    fastcharge?: string;
+    gamingbackup?: string;
+    standbybackup?: string;
+    mah?: string;
+    wiredcharge?: string;
+    wirelesscharge?: string;
+  }[];
+
+  maincam?: {
+    type?: string;
+    mp?: string;
+    resolution?: string;
+    zoom?: string;
+    features?: string;
+    videofps?: string;
+    mega?: string;
+    pixel?: string;
+  }[];
+
+  frontcam?: {
+    type?: string;
+    mp?: string;
+    resolution?: string;
+    features?: string;
+    videofps?: string;
+  }[];
+
+  sound?: {
+    speaker?: string;
+    headphonejack?: string;
+    quality?: string;
+  }[];
+
+  comms?: {
+    wifi?: string;
+    bluetooth?: string;
+    gps?: string;
+    nfc?: string;
+  }[];
+
+  features?: {
+    sensor?: string;
+    fingerprint?: string;
+    faceunlock?: string;
+    ir?: string;
+  }[];
+
+  mics?: {
+    color?: string;
+    quality?: string;
+    model?: string;
+    price?: string;
+  }[];
 }
 
+
 const page = () => {
-  const [selected, setSelected] = useState("/");
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(false);
   const params = useParams()
@@ -52,15 +167,6 @@ const page = () => {
     return <LoadingSpinner/>
   }
 
-  console.log(post)
-
-  const menuItems = [
-    { label: "Daily", href: "/daily" },
-    { label: "Mobiles", href: "/mobiles" },
-    { label: "Laptops", href: "/laptops" },
-    { label: "Watches", href: "/watches" },
-    { label: "Tools", href: "/tools" },
-  ];
 
   return (
     <>
@@ -69,95 +175,18 @@ const page = () => {
         <meta name="description" content={post?.desc} />
         <meta name="keywords" content={post?.keywords} />
       </Head>
-       
-      <article className='w-full min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] pt-[2vh] md:pt-[2vw] lg:p-[2.1vw] flex flex-col gap-[1vh] md:gap[.8vw] lg:gap-[.9vw]'>
 
-      {/* Mobile Share */}
-      <ShareLinks className="md:hidden lg:hidden flex md:flex-col flex-row gap-[1vh] md:gap-[.5vw] items-center md:items-start"/>
-
-      <div className="flex flex-col justify-between md:flex-row lg:flex-row">
-        <div className="flex flex-col gap-[.5vh] md:gap-[.3vw] lg:gap-[.3vw] py-[2vh] md:py-[1.1vw] lg:py-[1.2vw] px-[.2vh] md:px-[.5vw] lg:px-[.5vw]">
-            <h1 className='text-[2.3vh] md:text-[1.7vw] lg:text-[1.7vw] font-semibold text-zinc-700 leading-none'>{post?.title}</h1>
-
-            <p className='text-[1.2vh] md:text-[.8vw] lg:text-[.8vw] font-second font-medium text-zinc-700 pt-[.6vh] md:pt-[1vw] lg:pt-[1vw]'>Written by <span className='text-prime'> Kunal Singh </span> on <span className='text-gray-500'>{post?.createdAt ? new Date(post.createdAt).toLocaleDateString() : 'Unknown'}</span></p>
-
-            <p className='text-[1vh] md:text-[1.1vw] lg:text-[1.1vw] font-second font-medium text-zinc-700 hidden md:block lg:block md:w-[38vw] lg:w-[38vw] pt-[1vw]'>{post?.desc}</p>
-        </div>
-
-        <img src={post?.coverImg} alt={post?.altText} className="w-full h-[24vh] md:w-[27vw] md:h-[15vw] rounded-xl object-cover"/>
-        
+      <div className='overflow-hidden'>
+        {
+          post?.isdaily === "true" && <DailyPostPage post={post}/>
+        },
+        {
+          post?.ismobile === "true" && <MobilePostPage post={post}/>
+        },
+        {
+          post?.islaptop === "true" && <MobilePostPage post={post}/>
+        }
       </div>
-
-
-      {/* About post */}
-
-      <div className="flex flex-col md:flex-row lg:flex-row mt-[1.5vh] md:mt-[1.1vw] lg:mt-[1.2vw] gap-[1vh] md:gap-[1vw] lg:gap-[1vw]">
-
-        <div className="w-full flex flex-col gap-[1vh] md:gap-[.7vw] lg:gap-[.8vw]">
-
-          <div className="w-full h-full relative mb-[.6vh] md:mb-[.6vw] bg-green-200 rounded-sm px-[1vh] py-[.5vh] md:py-[.5vw]">
-            <span className="absolute top-0 left-0 w-[.5vh] rounded-lg md:w-[.7vw] bg-prime h-full "></span>
-            
-            <h4 className='text-[2vh] md:text-[1.3vw] lg:text-[1.3vw] font-semibold text-zinc-600 pl-[2vh] md:pl-[1vw] top-0'>Highlight</h4>
-
-            <p className='pl-[2vh] md:pl-[1vw] text-zinc-600 text-[1.5vh] md:text-[1vw] leading-[1.8vh] md:leading-[1.2vw] font-third'>{post?.highlight}</p>
-          </div>
-
-          <div className="font-prime post-content" dangerouslySetInnerHTML={{ __html: post?.content || "" }}>
-            
-          </div>
-
-        <Comments/>
-
-       </div>
-
-        <div className="md:w-[28vw] hidden md:block lg:block lg:w-[30vw] w-full px-[1vh] py-[1vh] md:px-[.6vw] lg:px-[.6vw] sticky top-[7%] h-full">
-
-           {/* Suggested Posts */}
-
-          <SuggestedPosts/> 
-
-          {/* share */}
-
-          <ShareLinks className='hidden md:flex md:flex-col flex-row gap-[1vh] md:gap-[.5vw] items-center md:items-start'/>
-
-         {/* Categories */}
-
-
-          <div className="Categories hidden md:flex lg:flex flex-col md:gap-[.5vw] lg:gap-[.5vw] mt-[1vh] md:mt-[1vw] lg:mt-[1vw]">
-            <p className='md:text-[1vw] lg:text-[1vw] font-second font-medium text-zinc-700'>Categories</p>
-
-            <ul className="flex gap-[.4vw] flex-col md:pr-[2.5vw] lg:pr-[2.5vw] items-start">
-            {menuItems.map((item) => (
-              <Link href={item.href} key={item.href}>
-                <li
-                  onClick={() => setSelected(item.href)}
-                  className={`px-[1vw] py-[.3vw] hover:underline
-                   text-center flex items-center justify-center text-[.9vw] text-medium text-zinc-700 ease-in-out  cursor-pointer`}
-                >
-                  {item.label}
-                </li>
-              </Link>
-            ))}</ul>
-          </div>
-
-          {/* Search */}
-
-          <div className="search hidden md:flex lg:flex h-[2.2vw] w-full relative  items-center justify-end">
-          <input 
-                type="text" 
-                placeholder='Search...'
-                className={`relative px-[1.5vw] pt-[.4vw] pb-[.2vw] w-full  bg-white outline-none rounded-full transition-all duration-300 border-2 border-green-400 text-zinc-700 h-full`}
-                name='search'
-            />
-
-            <div className=" rounded-full absolute right-0 top-0 bg-prime w-[2.5vw] flex items-center justify-center h-full cursor-pointer"><Search className='text-white'/></div>
-        </div>
-
-         
-        </div>
-      </div>
-    </article>
     </>
   )
 }

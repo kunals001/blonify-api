@@ -111,7 +111,7 @@ const postSchema = new mongoose.Schema({
             protection:{
                 type:String
             },
-            pixle:{
+            pixel:{
                 type:String
             },
             big:{
@@ -122,6 +122,9 @@ const postSchema = new mongoose.Schema({
     platform:[
         {
             os:{
+                type:String
+            },
+            osversion:{
                 type:String
             },
             chipset:{
@@ -313,7 +316,7 @@ const postSchema = new mongoose.Schema({
         type:String,
         default:"false"
     },
-    iswatch:{
+    isdaily:{
         type:String,
         default:"false"
     },
