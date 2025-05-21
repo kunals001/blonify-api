@@ -60,7 +60,7 @@ const page = () => {
 
       {/* Desktop Category */}
 
-      <DesktopCategories posts={posts}/>
+      <DesktopCategories/>
 
       {/* Featured Post */}
 

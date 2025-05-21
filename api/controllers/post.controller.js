@@ -143,6 +143,16 @@ export const getSinglePost = async (req, res) => {
     }
 }
 
+export const searchReasult = async (req, res) => {
+     try {
+    const query = req.query.query;
+    const posts = await Post.find({ title: { $regex: query, $options: 'i' } }).limit(10);
+    res.json({ posts });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 export const updatePost = async (req, res) => {
     try {
 

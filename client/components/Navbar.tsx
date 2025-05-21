@@ -5,10 +5,15 @@ import Link from 'next/link'
 import { useAuthStore } from '@/store/authStore'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
     const {user,logout} = useAuthStore();
     const router = useRouter();
 
@@ -27,9 +32,35 @@ const Navbar = () => {
     { label: "Home", href: "/" },
     { label: "Daily", href: "/daily" },
     { label: "Mobiles", href: "/mobiles" },
+    { label: "Laptops", href: "/laptops" },
     { label: "About", href: "/about" },
     { label: "Contact Us", href: "/contact-us" },
     ]
+
+   useEffect(() => {
+    const fetchSearchResults = async () => {
+    if (!searchTerm.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_KEY_3}/search-posts?query=${searchTerm}`);
+      setSearchResults(response.data.posts);
+    } catch (error) {
+      console.error("Search error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+   const delayDebounce = setTimeout(() => {
+    fetchSearchResults();
+   }, 500); // debounce 500ms
+
+  return () => clearTimeout(delayDebounce);
+   }, [searchTerm]);
 
   return (
     <nav className='z-20 w-full flex items-center h-[5.5vh] md:h-[4vw] lg:h-[4vw] px-[1vh] md:px-[13vw] lg:px-[15vw] justify-between  gap-[1vw] backdrop-filter backdrop-blur-xl select-none sticky top-0'>
@@ -69,16 +100,41 @@ const Navbar = () => {
 
         {/* Mobile Search bar */}
 
-        <div className={`relative mobile-search md:hidden lg:hidden  items-center justify-center w-full overflow-hidden`}>
-            <input 
-                type="text" 
-                placeholder='Search...'
-                className={`relative px-[1.5vh] pt-[.4vh] pb-[.2vw] w-full  h-[3.8vh] bg-white outline-none rounded-full transition-all duration-300 ${isSearch ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 ' } border-1 border-green-200 text-zinc-700`}
-                name='search'
-            />
+        <div className={`relative mobile-search md:hidden lg:hidden flex flex-col w-full overflow-visible`}>
+            {/* Search Input */}
+              <div className='relative w-full'>
+                <input 
+                  type="text" 
+                  placeholder='Search...'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={`relative px-[1.5vh] pt-[.4vh] pb-[.2vw] w-full h-[3.8vh] bg-white outline-none rounded-full transition-all duration-300 ${isSearch ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} border-1 border-green-200 text-zinc-700`}
+                  name='search'
+                />
+                <div onClick={() => setIsSearch(prev => !prev)} className="rounded-full absolute right-0 top-0 bg-prime w-[4.5vh] flex items-center justify-center h-full">
+                  <Search className='text-white'/>
+                </div>
+              </div>
 
-            <div onClick={() => setIsSearch(prev => !prev)} className=" rounded-full absolute right-0 top-0 bg-prime w-[4.5vh] flex items-center justify-center h-full"><Search className='text-white'/></div>
-        </div>
+              {/* Search Results Dropdown */}
+              {searchTerm && searchResults.length > 0 && (
+                <div className="absolute z-50 top-[4.5vh] left-0 w-full bg-white border border-zinc-200 shadow-lg rounded-lg max-h-[40vh] overflow-auto">
+                  {searchResults.map((post) => (
+                    <div 
+                      key={post._id}
+                      className="px-4 py-2 text-sm hover:bg-zinc-100 cursor-pointer"
+                      onClick={() => router.push(`/posts/${post._id}`)}
+                    >
+                      {post.title}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Optional loading state */}
+              {isLoading && <p className="text-sm text-center text-zinc-500 mt-2">Searching...            </p>}
+            </div>
+
 
         {/* Desktop Menu */}
         <div className="desktop-menu hidden md:block lg:block mt-[.7vw] items-center  justify-center ">

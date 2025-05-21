@@ -63,10 +63,14 @@ const LaptopPostPage = ({post}:any) => {
 
   return (
     <RefreshManage>
-    <article className='w-full flex flex-col md:flex-row min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] gap-[1vh] md:gap-[.5vw] lg:gap-[.6vw] overflow-hidden'>
 
+    <div className="">
+
+    <div className="px-[1vh] md:px-[13vw] lg:px-[15vw]">  
     <NavigationBreadcrumb/>
+    </div>
 
+    <article className='w-full flex flex-col md:flex-row min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] gap-[1vh] md:gap-[.5vw] lg:gap-[.6vw] overflow-hidden'>
     <div className="w-full">
         <div className="flex flex-col gap-[.4vh] md:gap-[.2vw] lg:gap-[.2vw] py-[2vh] md:py-[1.1vw] lg:py-[1.2vw] px-[.2vh] md:px-[.5vw] lg:px-[.5vw]">
             <h1 className='text-[2.4vh] md:text-[1.7vw] lg:text-[1.8vw] font-semibold text-zinc-700 leading-none'>{post?.title}</h1>
@@ -537,6 +541,7 @@ const LaptopPostPage = ({post}:any) => {
       <SuggestedPosts post={post}/>
     </div>
     </article>
+    </div>
     </RefreshManage>
   )
 }
