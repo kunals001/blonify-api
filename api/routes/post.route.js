@@ -3,13 +3,14 @@ import express from 'express'
 const router = express.Router()
 
 import {protectRoute} from "../middlewares/protectRoute.js"
-import {createPost,getPosts,deletePost,uploadAuth, getSlug} from "../controllers/post.controller.js"
+import {createPost,getPosts,deletePost,uploadAuth, getSlug,getAllPosts} from "../controllers/post.controller.js"
 
 
 router.get("/upload-auth",protectRoute,uploadAuth)
 
 router.post("/create",protectRoute,createPost)
 router.get("/get-post",getPosts)
+router.get("/get-all-posts",getAllPosts)
 router.get("/:slug", getSlug);
 router.delete("/delete-post/:postId/:userId",protectRoute,deletePost)
 

@@ -117,7 +117,16 @@ export const getPosts = async (req,res) => {
         res.status(500).json({success:false,message:"Internal Server Error in get posts"})
     }
 }
-
+export const getAllPosts = async (req, res) => {
+    try {
+         const post = await Post.find().sort({ createdAt: -1 });
+         res.status(200).json(post);
+    } catch (error) {
+        console.log("error in get posts",error.message);
+        res.status(500).json({success:false,message:"Internal Server Error in get posts"})
+    }
+ 
+};
 export const getSlug = async (req, res) => {
   const post = await Post.findOne({ slug: req.params.slug })
   res.status(200).json(post);

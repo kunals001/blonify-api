@@ -5,13 +5,17 @@ import DesktopCategories from "@/components/DesktopCategories"
 import WebHeadline from "@/components/WebHeadline"
 import MobileCategories from "@/components/MobileCategories"
 import Navigate from "@/components/navigate"
-import { Share } from "lucide-react"
 import ShareLinks from "@/components/ShareLinks"
+import { usePostStore } from "@/store/postStore"
+import { useEffect } from "react"
 
 
 const page = () => {
+  const { posts, getPosts } = usePostStore();
 
- 
+  useEffect(() => {
+    getPosts();
+   }, []); 
 
   return (
     <div className="w-full min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] pt-[2vh] md:pt-[2vw] lg:p-[2.1vw] flex flex-col gap-[1vh] md:gap[.8vw] lg:gap-[.9vw]">
@@ -34,16 +38,15 @@ const page = () => {
 
       {/* Featured Post */}
 
-      <FeaturedPost/>
+      <FeaturedPost posts={posts} />
 
       <h4 className="text-[1.8vh] md:text-[1.5vw] lg:text-[1.5vw] font-medium  text-zinc-700">Recent Posts</h4>
 
-      <PostList/>
+      <PostList posts={posts}/>
 
     </div>
-
-    
   )
 }
 
 export default page
+

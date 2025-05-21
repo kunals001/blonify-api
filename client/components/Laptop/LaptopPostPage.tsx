@@ -429,7 +429,7 @@ const LaptopPostPage = ({post}:any) => {
                     {[
                     { label: "Wifi", value: post.comms?.[0]?.wifi, bg: 'bg-green-200' },
                     { label: 'Bluetooth', value:post.comms?.[0]?.bluetooth},
-                    { label: 'Gps', value: post.comms?.[0]?.gps, bg: 'bg-green-200' },
+                    { label: 'Usb', value: post.comms?.[0]?.gps, bg: 'bg-green-200' },
                     { label: 'Nfc', value:post.comms?.[0]?.nfc},
                     ].map((item, index) => (
                     <div

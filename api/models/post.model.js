@@ -36,8 +36,8 @@ const postSchema = new mongoose.Schema({
         required:true,
     },
     isFeatured:{
-        type:String,
-        default:"false",
+        type:Boolean,
+        default:false,
     },
     keywords:{
         type:String
