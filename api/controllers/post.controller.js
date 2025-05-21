@@ -127,6 +127,40 @@ export const getAllPosts = async (req, res) => {
     }
  
 };
+
+export const getSinglePost = async (req, res) => {
+    try {
+
+        if(!req.user?.isAdmin){
+            return res.status(403).json({success:false,message:"Unauthorized"})
+        }
+        
+        const post = await Post.findById(req.params.postId);
+        res.status(200).json(post);
+    } catch (error) {
+        console.log("error in get posts",error.message);
+        res.status(500).json({success:false,message:"Internal Server Error in get posts"})
+    }
+}
+
+export const updatePost = async (req, res) => {
+    try {
+
+        if (!req.user?.isAdmin) {
+            return res.status(403).json({
+                success: false,
+                message: "Only admins can create posts",
+            });
+        }
+
+        const post = await Post.findByIdAndUpdate(req.params.postId,req.body,{new:true});
+        res.status(200).json(post)
+        
+    } catch (error) {
+        console.log("error in get posts",error.message);
+        res.status(500).json({success:false,message:"Internal Server Error in get posts"})
+    }
+}
 export const getSlug = async (req, res) => {
   const post = await Post.findOne({ slug: req.params.slug })
   res.status(200).json(post);

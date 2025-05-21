@@ -105,7 +105,7 @@ const DashPosts = () => {
                   </TableCell>
 
                   <TableCell className="text-right">
-                    <button className='text-white bg-prime px-[1vh] rounded-md py-[.3vw] cursor-pointer'><Link href={`/edit/${post._id}`}>Edit</Link></button>
+                    <button className='text-white bg-prime px-[1vh] rounded-md py-[.3vw] cursor-pointer'><Link href={`/update-post/${post._id}`}>Edit</Link></button>
                   </TableCell>
 
                 </TableRow>
