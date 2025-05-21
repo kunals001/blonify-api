@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Search } from 'lucide-react'
+import SearchBar from './SearchBar'
 
-const DesktopCategories = () => {
+const DesktopCategories = ({posts}:any) => {
 
     const menuItems = [
     { label: "Daily", href: "/daily" },
@@ -31,16 +31,9 @@ const DesktopCategories = () => {
           </ul>
         </div>
 
-        <div className="search h-[2.2vw] w-full relative flex items-center justify-end">
-          <input 
-                type="text" 
-                placeholder='Search...'
-                className={`relative px-[1.5vw] pt-[.4vw] pb-[.2vw] w-full  bg-white outline-none rounded-full transition-all duration-300 border-2 border-green-400 text-zinc-700 h-full`}
-                name='search'
-            />
-
-            <div className=" rounded-full absolute right-0 top-0 bg-prime w-[2.5vw] flex items-center justify-center h-full cursor-pointer"><Search className='text-white'/></div>
-        </div>
+        <SearchBar query={''} onChange={function (value: string): void {
+        throw new Error('Function not implemented.')
+          } }/>
       </div>
   )
 }
