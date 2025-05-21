@@ -9,7 +9,7 @@ const MobilePost = () => {
         {/* Network */}
        <Head text={"Network"} />
         <div className="flex flex-col gap-2">
-            <Input name={"technology"} type={"text"} placeholder={"Technology"} />
+            <Input name={"technology"} type={"text"} placeholder={"Technology for laptop Gpu GDDR"} />
             <Input name={"towbands"} type={"text"} placeholder={"Towbands"} />
             <Input name={"threebands"} type={"text"} placeholder={"Threebands"} />
             <Input name={"fourbands"} type={"text"} placeholder={"Fourbands"} />
@@ -21,8 +21,8 @@ const MobilePost = () => {
         <Head text={"Launch"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"date"} type={"text"} placeholder={"announce date"} />
-            <Input name={"status"} type={"text"} placeholder={"status"} />
+            <Input name={"date"} type={"text"} placeholder={"announce date or laptop launch date"} />
+            <Input name={"status"} type={"text"} placeholder={"status or laptop status"} />
         </div>
 
         {/* Body */}
@@ -30,10 +30,10 @@ const MobilePost = () => {
         <Head text={"Body"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"dimensions"} type={"text"} placeholder={"Dimensions"} />
-            <Input name={"weight"} type={"text"} placeholder={"Weight"} />
-            <Input name={"build"} type={"text"} placeholder={"Build"} />
-            <Input name={"sim"} type={"text"} placeholder={"Sim"} />
+            <Input name={"dimensions"} type={"text"} placeholder={"Dimensions or laptop dimensions"} />
+            <Input name={"weight"} type={"text"} placeholder={"Weight or laptop weight"} />
+            <Input name={"build"} type={"text"} placeholder={"Build or laptop body build"} />
+            <Input name={"sim"} type={"text"} placeholder={"Sim or laptop sim"} />
         </div>
 
         {/* Display */}
@@ -41,13 +41,13 @@ const MobilePost = () => {
         <Head text={"Display"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"type"} type={"text"} placeholder={"Type"} />
-            <Input name={"size"} type={"text"} placeholder={"Size"} />
-            <Input name={"resolution"} type={"text"} placeholder={"Resolution"} />
-            <Input name={"refreshrate"} type={"text"} placeholder={"Refreshrate"} />
-            <Input name={"protection"} type={"text"} placeholder={"Protection"} />
-            <Input name={"pixle"} type={"text"} placeholder={"Pixle"} />
-            <Input name={"big"} type={"text"} placeholder={"Big"} />
+            <Input name={"type"} type={"text"} placeholder={"Type or laptop type"} />
+            <Input name={"size"} type={"text"} placeholder={"Size or laptop size"} />
+            <Input name={"resolution"} type={"text"} placeholder={"Resolution or laptop resolution"} />
+            <Input name={"refreshrate"} type={"text"} placeholder={"Refreshrate or laptop refreshrate"} />
+            <Input name={"protection"} type={"text"} placeholder={"Protection or laptop protection"} />
+            <Input name={"pixle"} type={"text"} placeholder={"Pixle or laptop pixle"} />
+            <Input name={"big"} type={"text"} placeholder={"Big or laptop big"} />
         </div>
 
         {/* Platform */}
@@ -55,13 +55,13 @@ const MobilePost = () => {
         <Head text={"Platform"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"os"} type={"text"} placeholder={"Os"} />
-            <Input name={"osversion"} type={"text"} placeholder={"osversion"} />
-            <Input name={"chipset"} type={"text"} placeholder={"Chipset"} />
-            <Input name={"gpu"} type={"text"} placeholder={"Gpu"} />
-            <Input name={"cpu"} type={"text"} placeholder={"Cpu"} />
-            <Input name={"process"} type={"text"} placeholder={"Process"} />
-            <Input name={"ram"} type={"text"} placeholder={"Ram"} />
+            <Input name={"os"} type={"text"} placeholder={"Os or laptop os"} />
+            <Input name={"osversion"} type={"text"} placeholder={"osversion for laptop is null"} />
+            <Input name={"chipset"} type={"text"} placeholder={"Chipset or laptop null"} />
+            <Input name={"gpu"} type={"text"} placeholder={"Gpu or laptop gpu"} />
+            <Input name={"cpu"} type={"text"} placeholder={"Cpu or laptop cpu"} />
+            <Input name={"process"} type={"text"} placeholder={"Process or laptop process"} />
+            <Input name={"ram"} type={"text"} placeholder={"Ram or laptop ram"} />
         </div>
 
         {/* Memory */}
@@ -69,9 +69,9 @@ const MobilePost = () => {
         <Head text={"Memory"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"cardslot"} type={"text"} placeholder={"Cardslot"} />
-            <Input name={"ram"} type={"text"} placeholder={"Ram"} />
-            <Input name={"storage"} type={"text"} placeholder={"Storage"} />
+            <Input name={"cardslot"} type={"text"} placeholder={"Cardslot or laptop null"} />
+            <Input name={"ram"} type={"text"} placeholder={"Ram or laptop ram"} />
+            <Input name={"storage"} type={"text"} placeholder={"Storage or laptop storage"} />
         </div>
 
 
@@ -91,14 +91,14 @@ const MobilePost = () => {
         <Head text={"Battery"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"type"} type={"text"} placeholder={"Type"} />
-            <Input name={"capacity"} type={"text"} placeholder={"Capacity"} />
-            <Input name={"fastcharge"} type={"text"} placeholder={"Fastcharge"} />
-            <Input name={"gamingbackup"} type={"text"} placeholder={"Gamingbackup"} />
-            <Input name={"standbybackup"} type={"text"} placeholder={"Standbybackup"} />
-            <Input name={"mah"} type={"text"} placeholder={"Mah"} />
-            <Input name={"wiredcharge"} type={"text"} placeholder={"Wiredcharge"} />
-            <Input name={"wirelesscharge"} type={"text"} placeholder={"Wirelesscharge"} />
+            <Input name={"type"} type={"text"} placeholder={"Type or laptop type"} />
+            <Input name={"capacity"} type={"text"} placeholder={"Capacity or laptop capacity"} />
+            <Input name={"fastcharge"} type={"text"} placeholder={"Fastcharge or laptop fastcharge"} />
+            <Input name={"gamingbackup"} type={"text"} placeholder={"Gamingbackup or laptop gamingbackup"} />
+            <Input name={"standbybackup"} type={"text"} placeholder={"Standbybackup or laptop standbybackup"} />
+            <Input name={"mah"} type={"text"} placeholder={"Mah or laptop mah"} />
+            <Input name={"wiredcharge"} type={"text"} placeholder={"Wiredcharge or laptop wiredcharge"} />
+            <Input name={"wirelesscharge"} type={"text"} placeholder={"Wirelesscharge or laptop wirelesscharge"} />
         </div>
 
 
@@ -106,14 +106,14 @@ const MobilePost = () => {
         <Head text={"Main Camera"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"type"} type={"text"} placeholder={"Main Camera Type"} />
+            <Input name={"type"} type={"text"} placeholder={"Main Camera Type or laptop type"} />
             <Input name={"mp"} type={"text"} placeholder={"Mp"} />
             <Input name={"resolution"} type={"text"} placeholder={"Resolution"} />
             <Input name={"zoom"} type={"text"} placeholder={"Zoom"} />
             <Input name={"features"} type={"text"} placeholder={"Features"} />
             <Input name={"videofps"} type={"text"} placeholder={"Video Fps"} />
-            <Input name={"mega"} type={"text"} placeholder={"Mega"} />
-            <Input name={"pixel"} type={"text"} placeholder={"Pixel"} />
+            <Input name={"mega"} type={"text"} placeholder={"Mega or laptop mega"} />
+            <Input name={"pixel"} type={"text"} placeholder={"Pixel or laptop pixel"} />
         </div>
 
 
@@ -122,11 +122,11 @@ const MobilePost = () => {
         <Head text={"Front Camera"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"type"} type={"text"} placeholder={"Selfie Camera Type"} />
-            <Input name={"mp"} type={"text"} placeholder={"Mp"} />
-            <Input name={"resolution"} type={"text"} placeholder={"Resolution"} />
-            <Input name={"features"} type={"text"} placeholder={"Features"} />
-            <Input name={"videofps"} type={"text"} placeholder={"Video Fps"} />
+            <Input name={"type"} type={"text"} placeholder={"Selfie Camera Type or laptop type"} />
+            <Input name={"mp"} type={"text"} placeholder={"Mp or laptop mp"} />
+            <Input name={"resolution"} type={"text"} placeholder={"Resolution or laptop resolution"} />
+            <Input name={"features"} type={"text"} placeholder={"Features or laptop features"} />
+            <Input name={"videofps"} type={"text"} placeholder={"Video Fps or laptop videofps"} />
         </div>
 
         {/* Sound */}
@@ -146,7 +146,7 @@ const MobilePost = () => {
          <div className="flex flex-col gap-2">
             <Input name={"wifi"} type={"text"} placeholder={"Wifi"} />
             <Input name={"bluetooth"} type={"text"} placeholder={"Bluetooth"} />
-            <Input name={"gps"} type={"text"} placeholder={"Gps"} />
+            <Input name={"gps"} type={"text"} placeholder={"Gps or laptop USB"} />
             <Input name={"nfc"} type={"text"} placeholder={"Nfc"} />
         </div>
 
@@ -156,9 +156,9 @@ const MobilePost = () => {
         <Head text={"Features"} />
 
          <div className="flex flex-col gap-2">
-            <Input name={"sensor"} type={"text"} placeholder={"Sensor"} />
-            <Input name={"fingerprint"} type={"text"} placeholder={"Fingerprint"} />
-            <Input name={"faceunlock"} type={"text"} placeholder={"Faceunlock"} />
+            <Input name={"sensor"} type={"text"} placeholder={"Sensor or laptop sensor"} />
+            <Input name={"fingerprint"} type={"text"} placeholder={"Fingerprint or laptop fingerprint"} />
+            <Input name={"faceunlock"} type={"text"} placeholder={"Faceunlock or laptop faceunlock"} />
             <Input name={"ir"} type={"text"} placeholder={"Ir"} />
         </div>
 
