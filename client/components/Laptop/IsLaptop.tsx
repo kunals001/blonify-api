@@ -11,7 +11,11 @@ import Autoplay from 'embla-carousel-autoplay'
 import LaptopCarousel from './LaptopCarousel'
 import RefreshManage from "@/components/RefreshManage";
 
-const IsLaptop = () => {
+const IsLaptop = ({posts}:any) => {
+  const filteredPosts = posts.filter(
+    (post: any) => post.isFeatured && post.islaptop
+  );
+
   return (
     <RefreshManage>
     <div>
@@ -21,26 +25,28 @@ const IsLaptop = () => {
         </div>
 
 
-        <Carousel plugins={[
-                  Autoplay({
-                    delay: 2000,
-                  }),
-                 ]} className='mt-[1.2vh] md:mt-[.8vw] lg:mt-[.8vw]'>
-        <CarouselContent >
-            <CarouselItem className='md:basis-1/2 lg:basis-1/3'>
-                <LaptopCarousel/>
-            </CarouselItem>
-
-            <CarouselItem className='md:basis-1/2 lg:basis-1/3 '>
-                <LaptopCarousel/>
-            </CarouselItem>
-            <CarouselItem className='md:basis-1/2 lg:basis-1/3 '>
-                <LaptopCarousel/>
-            </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious className='hidden md:block lg:block'/>
-        <CarouselNext className='hidden md:block lg:block' />
-       </Carousel>
+        {posts.length > 0 ? (
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
+          className='mt-[1.2vh] md:mt-[.8vw] lg:mt-[.8vw]'
+        >
+          <CarouselContent>
+            {filteredPosts.map((post: any, index: number) => (
+              <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/2 '>
+                <LaptopCarousel post={post} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className='hidden md:block lg:block' />
+          <CarouselNext className='hidden md:block lg:block' />
+        </Carousel>
+      ) : (
+        <h1>No Featured Post</h1>
+      )}
     </div>
     </RefreshManage>
   )

@@ -5,6 +5,7 @@ import Comments from '../Comments';
 import ShareLinks from '../ShareLinks';
 import "@/app/globals.css";
 import RefreshManage from "@/components/RefreshManage";
+import NavigationBreadcrumb from '../navigate';
 
 
 const MobilePostPage = ({post}:any) => {
@@ -53,11 +54,11 @@ const MobilePostPage = ({post}:any) => {
   },
   ];
 
-
-
   return (
     <RefreshManage>
     <article className='w-full flex flex-col md:flex-row min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] gap-[1vh] md:gap-[.5vw] lg:gap-[.6vw] overflow-hidden'>
+
+    <NavigationBreadcrumb/>
 
     <div className="w-full">
         <div className="flex flex-col gap-[.4vh] md:gap-[.2vw] lg:gap-[.2vw] py-[2vh] md:py-[1.1vw] lg:py-[1.2vw] px-[.2vh] md:px-[.5vw] lg:px-[.5vw]">
@@ -556,7 +557,7 @@ const MobilePostPage = ({post}:any) => {
     </div>
 
     <div className="w-full md:w-[35vw]">
-      <SuggestedPosts/>
+      <SuggestedPosts post={post}/>
     </div>
     </article>
     </RefreshManage>

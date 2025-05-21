@@ -11,7 +11,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 const DailyTrending = ({ posts }: { posts: any[] }) => {
   const filteredPosts = posts.filter(
-    (post: any) => post.isFeatured && post.category === "daily"
+    (post: any) => post.isFeatured && post.isdaily
   );
 
   return (

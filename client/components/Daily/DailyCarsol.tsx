@@ -12,9 +12,7 @@ const DailyCarsol = ({ post }: { post: any}) => {
             <div className="pt-[.5vh] md:pt-[.5vw] lg:pt-[.4vw] flex gap-[1vh] md:gap-[1vw]  md:justify-start items-center">
                 <h1 className='text-[1.5vh] md:text-[1.4vw] lg:text-[1.2vw] font-second text-zinc-700 leading-none cursor-pointer hover:underline font-semibold'>{post?.title}</h1>
 
-                <span className='text-zinc-500 text-[.8vh] md:text-[.8vw] lg:text-[.8vw] w-[10vh] md:w-[11vw] lg:w-[11vw] font-second '> {post?.createdAt
-                            ? formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })
-                            : 'Unknown'}</span>
+                <span className='text-zinc-500 text-[.8vh] md:text-[.8vw] lg:text-[.8vw] w-[10vh] md:w-[11vw] lg:w-[11vw] font-second '> {post?.createdAt? formatDistanceToNow(new Date(post.createdAt), { addSuffix: true }): 'Unknown'}</span>
             </div>
 
            <div className="flex gap-[1vh] md:gap-[1vw] lg:gap-[1vw] pb-[.3vh] md:pb-[.3vw] pl-[.2vh] pt-[.5vh] md:pt-[.5vw]">

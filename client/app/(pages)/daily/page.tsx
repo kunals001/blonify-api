@@ -1,6 +1,7 @@
 "use client"
 import DailyRecent from "@/components/Daily/DailyRecent"
 import DailyTrending from "@/components/Daily/DailyTrending"
+import NavigationBreadcrumb from "@/components/navigate";
 import axios from "axios";
 import { useEffect, useState } from "react"
 
@@ -16,6 +17,9 @@ type Post = {
   _id: string;
   createdAt?: string | number | null;
   updatedAt?: string | number | null;
+  ismobile?: boolean | null;
+  islaptop?: boolean | null;
+  isdaily?: boolean | null;
 };
 const page = () => {
   const [posts,setposts] = useState<Post []>([]);
@@ -40,6 +44,8 @@ const page = () => {
 
   return (
     <div className='w-full flex flex-col min-h-screen px-[1vh] md:px-[13vw] lg:px-[15vw] pt-[1vh] md:pt-[1.5vw] lg:pt-[1.6vw]'>
+      <NavigationBreadcrumb/>
+
        <DailyTrending posts={posts} />
 
        <DailyRecent posts={posts}/>
