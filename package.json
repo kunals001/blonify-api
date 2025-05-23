@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "api/server.js",
   "scripts": {
-    "dev": "nodemon api/server.js"
+    "dev": "nodemon api/server.js",
+    "start": "node api/server.js"
   },
   "keywords": [],
   "author": "Kunal Singh",
