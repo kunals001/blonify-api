@@ -10,9 +10,14 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 const DailyTrending = ({ posts }: { posts: any[] }) => {
-  const filteredPosts = posts.filter(
+  
+  let filteredPosts = posts.filter(
     (post: any) => post.isFeatured && post.isdaily
   );
+
+  if (filteredPosts.length > 6) {
+    filteredPosts = filteredPosts.slice(filteredPosts.length - 6);
+  }
 
   return (
     <div>

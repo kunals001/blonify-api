@@ -30,7 +30,6 @@ export const createComment = async (req, res) => {
 export const getComments = async (req, res) => {
   try {
     const { postId } = req.params;
-    console.log("Fetching comments for postId:", postId);
 
     const comments = await Comment.find({ postId }).sort({ createdAt: -1 }).populate("user");;
 

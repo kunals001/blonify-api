@@ -12,9 +12,15 @@ import LaptopCarousel from './LaptopCarousel'
 import RefreshManage from "@/components/RefreshManage";
 
 const IsLaptop = ({posts}:any) => {
-  const filteredPosts = posts.filter(
+   // Filter only featured laptop posts
+  let filteredPosts = posts.filter(
     (post: any) => post.isFeatured && post.islaptop
   );
+
+ 
+  if (filteredPosts.length > 6) {
+    filteredPosts = filteredPosts.slice(filteredPosts.length - 6);
+  }
 
   return (
     <RefreshManage>

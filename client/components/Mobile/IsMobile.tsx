@@ -11,9 +11,14 @@ import Autoplay from 'embla-carousel-autoplay'
 import MobileCarousel from './MobileCarousel'
 
 const IsMobile = ({posts}:any) => {
-  const filteredPosts = posts.filter(
+
+  let filteredPosts = posts.filter(
     (post: any) => post.isFeatured && post.ismobile
   );
+
+  if (filteredPosts.length > 6) {
+    filteredPosts = filteredPosts.slice(filteredPosts.length - 6);
+  }
 
   return (
     <div>
